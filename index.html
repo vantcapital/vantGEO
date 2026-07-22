@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VANT · Visibilidad en IA para clínicas de implantología</title>
+  <meta name="description" content="Cuando un paciente de tu ciudad le pregunta a la IA qué clínica de implantes elegir, ¿te recomienda a ti o a tu competencia? VANT mide y trabaja tu visibilidad real en ChatGPT, Gemini y Perplexity. Auditoría gratuita de 15 minutos." />
+  <meta property="og:title" content="VANT · Visibilidad en IA para clínicas de implantología" />
+  <meta property="og:description" content="¿Te recomienda la IA a ti o a tu competencia? Medimos tu visibilidad real en ChatGPT, Gemini y Perplexity. Sin promesas de ranking." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0E3A3A" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contacto">Saltar a reservar auditoría</a>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="nav" id="nav" data-nav>
+    <div class="container nav__inner">
+      <a class="brand" href="#top" aria-label="VANT — inicio">
+        <span class="brand__mark">VANT</span>
+        <span class="brand__dot" aria-hidden="true"></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Navegación principal">
+        <a href="#por-que">Por qué la IA</a>
+        <a href="#metodo">Cómo trabajamos</a>
+        <a href="#casos">Casos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a href="#contacto" class="btn btn--primary btn--sm nav__cta">Auditoría gratuita</a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile" id="mobileMenu" hidden>
+      <a href="#por-que">Por qué la IA</a>
+      <a href="#metodo">Cómo trabajamos</a>
+      <a href="#casos">Casos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto" class="btn btn--primary">Reservar auditoría gratuita</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">
+            <span class="eyebrow__rule" aria-hidden="true"></span>
+            Visibilidad en IA para clínicas de implantología
+          </p>
+
+          <h1 class="hero__title reveal" data-delay="1">
+            Cuando un paciente de tu ciudad le pregunta a la IA qué clínica de implantes elegir,
+            <em>¿te recomienda a ti</em> o a tu competencia?
+          </h1>
+
+          <p class="hero__lead reveal" data-delay="2">
+            Cada vez más pacientes deciden dónde ponerse los implantes preguntando a
+            ChatGPT, Gemini o Perplexity. Si esas respuestas no te nombran, no existes
+            en la conversación que decide el caso. VANT mide tu visibilidad real y
+            trabaja para que aparezcas.
+          </p>
+
+          <div class="hero__actions reveal" data-delay="3">
+            <a href="#contacto" class="btn btn--primary">Reservar auditoría gratuita de 15 min</a>
+            <a href="#metodo" class="btn btn--ghost">
+              Cómo trabajamos
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <ul class="hero__trust reveal" data-delay="4">
+            <li>Sin permanencia</li>
+            <li>Informes con datos verificables</li>
+            <li>Sin promesas de ranking</li>
+          </ul>
+        </div>
+
+        <!-- AI answer card -->
+        <div class="hero__visual reveal" data-delay="2">
+          <div class="ai-card" id="aiCard" aria-label="Ejemplo de respuesta de un asistente de IA">
+            <div class="ai-card__bar">
+              <span class="ai-card__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ai-card__tag">Asistente de IA</span>
+            </div>
+            <div class="ai-card__body">
+              <p class="ai-card__query">
+                <span class="ai-card__caret" aria-hidden="true"></span>
+                mejores clínicas de implantes dentales en tu ciudad
+              </p>
+              <p class="ai-card__intro">Estas son las clínicas mejor valoradas de la zona:</p>
+              <ol class="ai-card__list">
+                <li class="ai-line"><span>01</span> Clínica dental [Competidor&nbsp;A]</li>
+                <li class="ai-line"><span>02</span> Clínica dental [Competidor&nbsp;B]</li>
+                <li class="ai-line"><span>03</span> Clínica dental [Competidor&nbsp;C]</li>
+              </ol>
+              <div class="ai-card__miss">
+                <span class="ai-card__rule" aria-hidden="true"></span>
+                <p>¿Y tu clínica? <strong>Aquí es donde deberías estar.</strong></p>
+              </div>
+            </div>
+          </div>
+          <p class="hero__visual-note">Ejemplo ilustrativo de una respuesta de IA.</p>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Sigue</span>
+        <span class="hero__scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- ===================== LOGOS / CONTEXT STRIP ===================== -->
+    <section class="strip" aria-label="Asistentes donde investigan tus pacientes">
+      <div class="container strip__inner">
+        <p class="strip__label">Donde tus pacientes preguntan hoy</p>
+        <ul class="strip__list">
+          <li>ChatGPT</li>
+          <li aria-hidden="true" class="strip__sep">·</li>
+          <li>Gemini</li>
+          <li aria-hidden="true" class="strip__sep">·</li>
+          <li>Perplexity</li>
+          <li aria-hidden="true" class="strip__sep">·</li>
+          <li>Google&nbsp;AI</li>
+          <li aria-hidden="true" class="strip__sep">·</li>
+          <li>Copilot</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== POR QUÉ IMPORTA ===================== -->
+    <section class="section why" id="por-que">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__kicker"><span class="section__num">01</span> Por qué importa</p>
+          <h2 class="section__title">El paciente ya no busca como antes.<br /><em>Pregunta.</em></h2>
+          <p class="section__intro">
+            Un paciente que se plantea unos implantes no compara diez webs ni lee veinte
+            reseñas. Le hace a la IA la pregunta directa —«¿qué clínica me recomiendas?»—
+            y se fía de una respuesta que ya viene filtrada. Si tu clínica no está en esa
+            respuesta, no entras en la conversación donde se decide el tratamiento.
+          </p>
+        </header>
+
+        <!-- Patient journey -->
+        <ol class="journey reveal">
+          <li class="journey__step">
+            <span class="journey__idx">1</span>
+            <h3>Antes preguntaba a conocidos y a Google</h3>
+            <p>Reseñas, webs, comparaciones. El paciente hacía el trabajo de investigar y comparaba varias clínicas por su cuenta.</p>
+          </li>
+          <li class="journey__step">
+            <span class="journey__idx">2</span>
+            <h3>Ahora le pregunta a la IA</h3>
+            <p>«Estoy en tu ciudad, quiero implantes, ¿a qué clínica voy?» La IA responde con un puñado de nombres concretos. El paciente ya no compara diez: valora dos o tres.</p>
+          </li>
+          <li class="journey__step">
+            <span class="journey__idx">3</span>
+            <h3>Elige entre los que la IA nombra</h3>
+            <p>Pide cita en una de las clínicas de esa lista corta. Si no estás en ella, ni siquiera has entrado en la decisión —y no te enteras.</p>
+          </li>
+        </ol>
+
+        <!-- Cost block -->
+        <div class="cost reveal">
+          <div class="cost__lead">
+            <h3 class="cost__title">El coste real de no aparecer</h3>
+            <p>
+              No aparecer en la IA no es un problema de imagen: es un paciente de implantes
+              que se sienta en el sillón de otra clínica. Y en implantología, cada caso
+              perdido se mide en miles de euros.
+            </p>
+          </div>
+          <div class="cost__stats">
+            <div class="stat">
+              <p class="stat__num" data-count-to="25000" data-prefix="6.000 – " data-suffix=" €">6.000 – 25.000 €</p>
+              <p class="stat__label">Lo que puede valer un solo caso de implantología completo. Cada respuesta que no te nombra es un caso que se decide en otra clínica.</p>
+            </div>
+            <div class="stat">
+              <p class="stat__num" data-count-to="3" data-suffix="">3</p>
+              <p class="stat__label">Los asistentes que un paciente puede consultar antes de decidir. Una sola respuesta puede orientar todo el tratamiento.</p>
+            </div>
+            <div class="stat">
+              <p class="stat__num stat__num--word">0</p>
+              <p class="stat__label">Las veces que apareces si la IA no conoce tu clínica. No es que salgas el último: es que no sales. Y no lo ves en ninguna analítica.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== IMAGE BAND (placeholder) ===================== -->
+    <section class="band" aria-label="Imagen de clínica">
+      <div class="container">
+        <figure class="ph ph--wide reveal" role="img" aria-label="Espacio reservado para foto de la clínica">
+          <div class="ph__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34"><path d="M4 17l5-6 4 4 3-3 4 5M3 5h18v14H3z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </div>
+          <figcaption>Foto de la clínica · instalaciones / recepción</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== CÓMO TRABAJAMOS ===================== -->
+    <section class="section method" id="metodo">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__kicker"><span class="section__num">02</span> Cómo trabajamos</p>
+          <h2 class="section__title">Primero medimos la realidad.<br /><em>Después, la movemos.</em></h2>
+          <p class="section__intro">
+            Nada de cajas negras. Empezamos enseñándote, con capturas, qué responde
+            hoy la IA cuando preguntan por clínicas de implantes en tu ciudad. A partir
+            de ahí, trabajamos tu visibilidad mes a mes con datos que puedes comprobar.
+          </p>
+        </header>
+
+        <div class="steps">
+          <article class="step-card reveal">
+            <p class="step-card__num">01</p>
+            <p class="step-card__tag">Primer paso · gratuito</p>
+            <h3 class="step-card__title">Auditoría de visibilidad en IA</h3>
+            <p class="step-card__text">
+              Le hacemos a ChatGPT, Gemini y Perplexity las preguntas reales que hace tu
+              paciente. Y te enseñamos, tal cual, qué contestan hoy: si te nombran, a
+              quién nombran antes que a ti y qué se dice de tu clínica.
+            </p>
+            <ul class="step-card__list">
+              <li>15 minutos, sin coste ni compromiso</li>
+              <li>Resultados con capturas reales, no valoraciones</li>
+              <li>Comparativa con tus competidores directos</li>
+            </ul>
+            <a href="#contacto" class="step-card__link">
+              Reservar la auditoría
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+
+          <article class="step-card reveal" data-delay="1">
+            <p class="step-card__num">02</p>
+            <p class="step-card__tag">Servicio mensual</p>
+            <h3 class="step-card__title">Informe de Visibilidad y Competencia en IA</h3>
+            <p class="step-card__text">
+              Cada mes medimos cómo evoluciona tu presencia frente a tus competidores
+              directos en las respuestas de IA: dónde apareces, qué se dice de ti y en
+              qué conviene trabajar el mes siguiente.
+            </p>
+            <ul class="step-card__list">
+              <li>Seguimiento mensual, comparable mes a mes</li>
+              <li>Datos verificables, sin métricas de humo</li>
+              <li>Informe claro, sin tecnicismos de IA</li>
+            </ul>
+            <a href="#contacto" class="step-card__link">
+              Hablar del informe mensual
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </article>
+        </div>
+
+        <!-- Honesty callout -->
+        <aside class="honesty reveal" aria-label="Nuestra honestidad">
+          <span class="honesty__rule" aria-hidden="true"></span>
+          <p class="honesty__kicker">Lo que no vas a oír de nosotros</p>
+          <p class="honesty__text">
+            Que te garantizamos el primer puesto. <em>Nadie</em> controla lo que responde
+            una IA —quien te prometa una posición fija, te está vendiendo humo. Lo que sí
+            hacemos es medir la realidad con rigor y mover la aguja con método. Nuestra
+            honestidad no es un eslogan: es parte del servicio.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIOS ===================== -->
+    <section class="section cases" id="casos">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__kicker"><span class="section__num">03</span> Casos</p>
+          <h2 class="section__title">Resultados que se enseñan,<br /><em>no que se prometen.</em></h2>
+          <p class="section__intro">
+            Dueños de clínica hablando de lo que midieron, no de lo que esperaban.
+          </p>
+        </header>
+
+        <div class="quotes">
+          <figure class="quote reveal">
+            <blockquote>
+              En la primera auditoría descubrí que la IA recomendaba tres clínicas de mi
+              ciudad y ninguna era la mía. Seis meses después aparezco en dos de los tres
+              asistentes. Lo que más valoro: me lo enseñan con capturas, no con promesas.
+            </blockquote>
+            <figcaption class="quote__author">
+              <span class="quote__avatar" aria-hidden="true">EM</span>
+              <span>
+                <strong>Dra. Elena Marés</strong>
+                <span class="quote__role">Directora · Clínica dental (Valencia)</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote reveal" data-delay="1">
+            <blockquote>
+              Lo que me convenció fue que no me prometieron ser el número uno. Me dijeron
+              claramente que eso no lo controla nadie. Después de años oyendo lo contrario,
+              por fin una agencia que habla como hablo yo con mis pacientes.
+            </blockquote>
+            <figcaption class="quote__author">
+              <span class="quote__avatar" aria-hidden="true">JR</span>
+              <span>
+                <strong>Dr. Javier Ruano</strong>
+                <span class="quote__role">Propietario · Clínica de implantología (Sevilla)</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="quote reveal" data-delay="2">
+            <blockquote>
+              Cada mes recibo un informe que entiendo, sin tecnicismos. Sé exactamente
+              frente a qué clínicas compito en la IA y en qué hemos mejorado. Es la
+              primera vez que una inversión en marketing me llega con datos comprobables.
+            </blockquote>
+            <figcaption class="quote__author">
+              <span class="quote__avatar" aria-hidden="true">CD</span>
+              <span>
+                <strong>Dr. Carlos Duarte</strong>
+                <span class="quote__role">Director médico · Clínica dental (Bilbao)</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="cases__note">Testimonios de ejemplo. Se sustituirán por casos reales verificables.</p>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACTO / CTA ===================== -->
+    <section class="section contact" id="contacto">
+      <div class="container contact__grid">
+        <div class="contact__copy reveal">
+          <p class="section__kicker"><span class="section__num">04</span> Contacto</p>
+          <h2 class="section__title contact__title">
+            Descubre hoy qué responde la IA<br />cuando preguntan por <em>tu clínica</em>.
+          </h2>
+          <p class="contact__lead">
+            Reserva una auditoría gratuita de 15 minutos. Sin compromiso y sin
+            tecnicismos: te enseñamos qué dice la IA de tu clínica hoy y frente a
+            quién compites.
+          </p>
+          <ul class="contact__list">
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Qué responde la IA sobre tu clínica ahora mismo
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              A qué competidores nombra antes que a ti
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Por dónde empezar, sin ningún compromiso
+            </li>
+          </ul>
+          <p class="contact__alt">
+            ¿Prefieres escribir? <a href="mailto:hola@vant.example">hola@vant.example</a>
+          </p>
+        </div>
+
+        <div class="contact__form-wrap reveal" data-delay="1">
+          <form class="form" id="auditForm" novalidate>
+            <p class="form__head">Reservar auditoría gratuita</p>
+            <div class="form__row">
+              <label class="field">
+                <span>Nombre</span>
+                <input type="text" name="nombre" autocomplete="name" required placeholder="Tu nombre" />
+              </label>
+              <label class="field">
+                <span>Clínica</span>
+                <input type="text" name="clinica" required placeholder="Nombre de la clínica" />
+              </label>
+            </div>
+            <div class="form__row">
+              <label class="field">
+                <span>Ciudad</span>
+                <input type="text" name="ciudad" required placeholder="Ciudad" />
+              </label>
+              <label class="field">
+                <span>Teléfono</span>
+                <input type="tel" name="telefono" autocomplete="tel" placeholder="Teléfono" />
+              </label>
+            </div>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="tucorreo@clinica.com" />
+            </label>
+            <button type="submit" class="btn btn--primary btn--block">Reservar mi auditoría gratuita</button>
+            <p class="form__fine">Te respondemos en menos de 24&nbsp;h laborables. Tus datos solo se usan para contactarte sobre la auditoría.</p>
+            <p class="form__done" id="formDone" hidden>Gracias. Hemos recibido tu solicitud y te escribimos en menos de 24&nbsp;h.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <span class="footer__rule" aria-hidden="true"></span>
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__mark">VANT</span>
+        <p>Visibilidad en IA para clínicas privadas de implantología. Medición honesta, resultados verificables.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pie de página">
+        <a href="#por-que">Por qué la IA</a>
+        <a href="#metodo">Cómo trabajamos</a>
+        <a href="#casos">Casos</a>
+        <a href="#contacto">Auditoría gratuita</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="mailto:hola@vant.example">hola@vant.example</a>
+        <p class="footer__legal">© <span id="year">2026</span> VANT · Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js" defer></script>
+</body>
+</html>
