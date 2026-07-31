@@ -399,13 +399,17 @@ p,figure,blockquote{margin:0}
 
 <header class="hero">
   <div class="placa" aria-hidden="true">
-    <!-- Vídeo diferido y silencioso. El póster estático se ve siempre y es
-         lo único que se carga en móvil, con conexión lenta o con movimiento
-         reducido; core.js activa el vídeo solo cuando procede.
-         TODO(assets): rellenar las dos rutas con los archivos generados en
-         Higgsfield (assets/clinica-loop.mp4 y assets/clinica-poster.jpg).
-         Mientras estén vacías no se pide nada a la red y se ve la composición
-         CSS de .placa, que ya lleva el mismo tratamiento duotono. -->
+    <!-- La fotografía. En cuanto exista assets/clinica-poster.jpg, basta con
+         descomentar esta línea: el travelling lento no lo hace el vídeo, lo
+         hace la animación de .placa, así que la imagen fija se mueve igual.
+         Sin `loading="lazy"`: es la imagen principal y debe cargar cuanto antes. -->
+    <!-- <img src="assets/clinica-poster.jpg" alt="" decoding="async" fetchpriority="high"> -->
+
+    <!-- Vídeo diferido y silencioso, opcional. Si algún día hay bucle, se
+         rellenan las dos rutas y core.js lo activa solo: nunca en móvil, ni
+         con conexión lenta, ni con movimiento reducido, y siempre con el
+         póster debajo. Mientras las rutas estén vacías no se pide nada a la
+         red y se ve la composición CSS de .placa, con el mismo duotono. -->
     <video muted loop playsinline preload="none" aria-hidden="true"
            data-src="" data-poster=""></video>
   </div>
