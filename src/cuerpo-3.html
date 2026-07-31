@@ -1,0 +1,397 @@
+<title>VANT — Cuerpo 3 «Compacta»</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="VANT mide cada mes si su clínica aparece en las respuestas de ChatGPT, Gemini y Perplexity. Medición verificable, sin promesas de ranking.">
+<style>
+/*@FONTS@*/
+/*@CORE@*/
+/*@FILE:src/hero.css@*/
+
+/* ═══════════════════════════════════════════════════════════════
+   CUERPO 3 — «COMPACTA»
+   Bandas cortas y cambios de fondo frecuentes. Menos aire y más
+   contraste entre secciones: se recorre en la mitad de scroll que las
+   otras dos. Es la lectura más comercial — y la que antes llega al
+   formulario.
+   ═══════════════════════════════════════════════════════════════ */
+.banda{padding-block:clamp(52px,6vw,88px);position:relative}
+.banda-cab{max-width:64ch;margin-bottom:clamp(30px,3.6vw,46px)}
+.banda-cab h2{font-variation-settings:'opsz' 72;font-size:clamp(1.8rem,3.5vw,2.85rem);
+  line-height:1.1;margin:16px 0 16px;max-width:20ch}
+.banda-cab p{font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:var(--texto-2)}
+.osc .banda-cab p{color:var(--crema-70)}
+
+/* ── 2. Qué está pasando — tres columnas cortas ───────────── */
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--linea)}
+.trio article{padding:clamp(24px,2.6vw,34px) clamp(20px,2.4vw,34px) 0 0;border-right:1px solid var(--linea)}
+.trio article + article{padding-left:clamp(20px,2.4vw,34px)}
+.trio article:last-child{border-right:0}
+.trio .n{font-family:var(--serif);font-weight:300;font-variation-settings:'opsz' 40;
+  font-size:2.4rem;line-height:1;color:var(--acento-txt);display:block;margin-bottom:18px}
+.trio h3{font-size:clamp(1.15rem,1.9vw,1.45rem);line-height:1.2;margin-bottom:12px;max-width:18ch}
+.trio p{font-size:14.5px;line-height:1.7;color:var(--texto-2)}
+.consulta{margin-top:18px;border-top:1px solid var(--linea);padding-top:14px}
+.consulta .et{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--acento-txt);margin-bottom:8px}
+.consulta .txt{display:block;font-family:var(--mono);font-size:12px;line-height:1.55;
+  color:var(--texto);min-height:4.6em}
+.caret{display:inline-block;width:6px;height:1.05em;background:var(--petroleo);vertical-align:-.16em;
+  margin-left:2px;animation:parpadeo calc(1.05s / var(--vel)) steps(1) infinite}
+@keyframes parpadeo{50%{opacity:0}}
+@media(max-width:880px){
+  .trio{grid-template-columns:1fr}
+  .trio article{border-right:0;border-bottom:1px solid var(--linea);padding:24px 0}
+  .trio article + article{padding-left:0}
+  .trio article:last-child{border-bottom:0}
+}
+
+/* ── 4. Ventajas — banda oscura compacta ──────────────────── */
+.ventajas-c{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--linea-osc)}
+.ventajas-c article{padding:clamp(24px,2.6vw,34px) clamp(20px,2.4vw,34px) 0 0;
+  border-right:1px solid var(--linea-osc)}
+.ventajas-c article + article{padding-left:clamp(20px,2.4vw,34px)}
+.ventajas-c article:last-child{border-right:0}
+.ventajas-c .n{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--acento-txt);display:block;margin-bottom:16px}
+.ventajas-c h3{font-size:clamp(1.2rem,2vw,1.55rem);line-height:1.18;margin-bottom:12px;max-width:14ch}
+.ventajas-c p{font-size:14.5px;line-height:1.7;color:var(--crema-70)}
+@media(max-width:880px){
+  .ventajas-c{grid-template-columns:1fr}
+  .ventajas-c article{border-right:0;border-bottom:1px solid var(--linea-osc);padding:24px 0}
+  .ventajas-c article + article{padding-left:0}
+  .ventajas-c article:last-child{border-bottom:0}
+}
+
+/* ── Franqueza — declaración corta a lo ancho ─────────────── */
+.declaracion{background:var(--crema);border-block:1px solid var(--linea);
+  padding-block:clamp(44px,5.5vw,76px)}
+.declaracion h2{font-size:clamp(1.7rem,3.4vw,2.7rem);line-height:1.12;max-width:21ch;margin-bottom:28px}
+.declaracion .tachones{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--linea);
+  margin-bottom:26px}
+.declaracion .tachones div{flex:1 1 220px;padding:16px 24px 16px 0;border-right:1px solid var(--linea);
+  font-size:14.5px;line-height:1.55;color:var(--texto-2)}
+.declaracion .tachones div:last-child{border-right:0}
+.declaracion .tachones div + div{padding-left:24px}
+.declaracion s{text-decoration:line-through;text-decoration-thickness:1px;color:var(--texto-2)}
+.declaracion .cierre{font-size:clamp(15px,1.2vw,17px);line-height:1.72;color:var(--texto);max-width:74ch}
+.declaracion .cierre b{font-weight:500}
+@media(max-width:880px){
+  .declaracion .tachones div{border-right:0;border-bottom:1px solid var(--linea);padding:14px 0}
+  .declaracion .tachones div + div{padding-left:0}
+  .declaracion .tachones div:last-child{border-bottom:0}
+}
+
+/* ── 5. Cómo funciona — ficha a la izquierda, pasos al lado ─ */
+.como .reparto{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);
+  gap:clamp(28px,4vw,64px);align-items:start}
+.como .ficha{position:sticky;top:44px}
+.pasos-c{list-style:none;margin:0;padding:0}
+.pasos-c li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding:22px 0;
+  border-bottom:1px solid var(--linea)}
+.pasos-c li:first-child{padding-top:0}
+.pasos-c li:last-child{border-bottom:0}
+.pasos-c .n{font-family:var(--serif);font-size:1.85rem;font-weight:300;line-height:1;
+  color:var(--acento-txt);font-variation-settings:'opsz' 40}
+.pasos-c h3{font-size:clamp(1.1rem,1.8vw,1.4rem);line-height:1.22;margin-bottom:9px}
+.pasos-c p{font-size:14.5px;line-height:1.7;color:var(--texto-2);max-width:46ch}
+@media(max-width:900px){
+  .como .reparto{grid-template-columns:1fr;gap:36px}
+  .como .ficha{position:static}
+}
+
+/* ── 6. Testimonios — banda estrecha de tres citas ────────── */
+.citas-c{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);
+  border-top:1px solid var(--linea);padding-top:clamp(24px,2.8vw,36px)}
+.citas-c figure{margin:0}
+.citas-c blockquote{margin:0 0 16px;font-family:var(--serif);font-weight:300;
+  font-size:clamp(1.05rem,1.65vw,1.3rem);line-height:1.38;letter-spacing:-.01em}
+.citas-c figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--texto-2);line-height:1.7}
+.aviso-ejemplo{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--acento-txt);margin-top:14px}
+@media(max-width:880px){.citas-c{grid-template-columns:1fr;gap:28px}}
+
+/* ── 7. Contacto — cierre oscuro ──────────────────────────── */
+.contacto-r{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(32px,5vw,76px);align-items:start}
+.form-rejilla{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,30px)}
+.form-rejilla .ancho{grid-column:1 / -1}
+.envio{margin-top:30px;display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center}
+.contacto .cta{border:0;cursor:pointer;background:var(--laton-claro);color:var(--tinta)}
+.contacto .cta:hover,.contacto .cta:focus-visible{background:var(--crema);color:var(--tinta)}
+.contacto .cta[disabled]{opacity:.55;cursor:default}
+.incluye{list-style:none;margin:0;padding:0;border-top:1px solid var(--linea-osc)}
+.incluye li{position:relative;padding:15px 0 15px 28px;border-bottom:1px solid var(--linea-osc);
+  font-size:14.5px;line-height:1.64;color:var(--crema-70)}
+.incluye li b{color:var(--crema);font-weight:500}
+.incluye li::before{content:'';position:absolute;left:2px;top:23px;width:8px;height:8px;
+  border:1px solid var(--acento);transform:rotate(45deg)}
+.directo{margin-top:24px;font-family:var(--mono);font-size:11.5px;line-height:1.9;color:var(--crema-50)}
+.directo a{color:var(--laton-claro)}
+@media(max-width:900px){
+  .contacto-r{grid-template-columns:1fr;gap:40px}
+  .form-rejilla{grid-template-columns:1fr}
+}
+</style>
+
+<div class="progreso" aria-hidden="true"><i></i></div>
+<a id="inicio"></a>
+
+<!--@FILE:src/hero.html@-->
+
+<main>
+  <!-- ═══ 3. Franja de motores, pegada al hero ═══ -->
+  <section class="osc motores" aria-label="Motores de IA que medimos cada mes">
+    <div class="pista" aria-hidden="true">
+      <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span><span>Google AI Overviews</span><span>Copilot</span>
+      <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span><span>Google AI Overviews</span><span>Copilot</span>
+    </div>
+    <p style="position:absolute;left:-9999px">Medimos en ChatGPT, Gemini, Perplexity, Google AI Overviews y Copilot.</p>
+  </section>
+
+  <!-- ═══ 2. ¿Qué está pasando exactamente? ═══ -->
+  <section class="banda" aria-labelledby="t-pasando">
+    <div class="grano" aria-hidden="true"></div>
+    <div class="env">
+      <div class="banda-cab">
+        <span class="kick rise">¿Qué está pasando exactamente?</span>
+        <h2 id="t-pasando" class="rise">Sus pacientes cambiaron de sitio antes de que nadie se lo dijera.</h2>
+        <p class="rise">No hace falta entender de tecnología para ver el problema. Hace falta ver una búsqueda real, de principio a fin.</p>
+      </div>
+      <div class="trio">
+        <article class="rise">
+          <span class="n">1</span>
+          <h3>Antes se buscaba. Ahora se pregunta.</h3>
+          <p>Su paciente ya no escribe «dentista Chamberí» y compara diez enlaces azules. Le escribe a ChatGPT como quien le pregunta a un cuñado que sabe del tema, con su caso y sus palabras.</p>
+          <div class="consulta">
+            <span class="et">Escrito por un paciente, tal cual</span>
+            <span class="txt" data-tecleo='["me duele al masticar desde hace tres semanas, ¿a qué clínica voy en Valencia?","¿quién hace implantes bien y sin sacarme el dinero cerca de Chamberí?","busco fisio de confianza para una hernia cervical en Sevilla"]'></span>
+          </div>
+        </article>
+        <article class="rise">
+          <span class="n">2</span>
+          <h3>La IA no devuelve diez opciones. Devuelve dos o tres.</h3>
+          <p>Y las devuelve con nombre y apellido, dentro de un párrafo escrito en tono de consejo, sin publicidad visible y sin que se vea de dónde han salido. Para su paciente eso no parece un anuncio: parece una recomendación de alguien que sabe.</p>
+        </article>
+        <article class="rise">
+          <span class="n">3</span>
+          <h3>Que le nombren o no, no es casualidad.</h3>
+          <p>La IA se apoya en lo que encuentra escrito sobre usted: su ficha, sus reseñas, cómo describe sus tratamientos, qué dicen de su clínica otras webs. Nada de eso es magia. Pero nadie lo estaba vigilando, y desde luego nadie se lo estaba midiendo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. Ventajas ═══ -->
+  <section class="banda osc" aria-labelledby="t-ventajas">
+    <div class="grano" aria-hidden="true"></div>
+    <div class="env">
+      <div class="banda-cab">
+        <span class="kick rise">Cómo trabajamos</span>
+        <h2 id="t-ventajas" class="rise">Tres cosas que puede exigirnos por escrito.</h2>
+        <p class="rise">Ninguna de las tres depende de que usted se fíe de nosotros. Las tres se comprueban.</p>
+      </div>
+      <div class="ventajas-c">
+        <article class="rise">
+          <span class="n">Comprobación</span>
+          <h3>Lo comprueba usted mismo</h3>
+          <p>Le entregamos las preguntas exactas que hemos usado, una por una. Las escribe en su propio móvil y ve lo mismo que le hemos contado. Si algún mes no coincide, es usted quien nos lo dice a nosotros.</p>
+        </article>
+        <article class="rise">
+          <span class="n">Contexto</span>
+          <h3>Sabe contra quién compite</h3>
+          <p>No solo si aparece o no. Qué otras clínicas de su ciudad se nombran en su lugar, cuántas veces y en qué tipo de consulta. A veces el hallazgo incómodo es descubrir quién sale cuando usted no.</p>
+        </article>
+        <article class="rise">
+          <span class="n">Compromiso</span>
+          <h3>Sin permanencia</h3>
+          <p>Un mes de aviso y se acabó, sin penalización ni conversación incómoda. Y si a los tres meses los números no se mueven, se lo diremos nosotros antes de que tenga que preguntárnoslo usted.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Franqueza ═══ -->
+  <section class="declaracion" aria-labelledby="t-franqueza">
+    <div class="env">
+      <span class="kick rise">Antes de que lo pregunte</span>
+      <h2 id="t-franqueza" class="rise" style="margin-top:18px">Lo que no le vamos a prometer.</h2>
+      <div class="tachones rise">
+        <div><s>Que le garantizamos el primer puesto en ChatGPT.</s></div>
+        <div><s>Que sabemos cómo funciona el algoritmo por dentro.</s></div>
+        <div><s>Que en un mes notará la diferencia.</s></div>
+      </div>
+      <p class="cierre rise">Esas respuestas son probabilísticas: cambian entre un usuario y otro, y entre una semana y la siguiente. Nadie las controla — ni nosotros, ni ninguna agencia que le diga lo contrario. Lo que sí podemos hacer es <b>medirlas con rigor, enseñarle la medición y trabajar sobre lo que sí depende de su clínica.</b></p>
+    </div>
+  </section>
+
+  <!-- ═══ 5. Cómo funciona ═══ -->
+  <section class="banda como" aria-labelledby="t-como">
+    <div class="grano" aria-hidden="true"></div>
+    <div class="env">
+      <div class="banda-cab">
+        <span class="kick rise">Cómo funciona</span>
+        <h2 id="t-como" class="rise">Empieza con quince minutos y un dato que hoy no tiene.</h2>
+        <p class="rise">Una llamada, una medición y un documento corto cada mes. Este es el formato exacto del informe:</p>
+      </div>
+      <div class="reparto">
+        <div class="ficha rise">
+          <div class="fh"><span>Medición mensual</span><span class="tag">Ejemplo ilustrativo</span></div>
+          <div class="cifra">
+            <span class="num" data-contador="37" data-sufijo="%">37%</span>
+            <span class="desc">Tasa de aparición<br>en 60 consultas</span>
+          </div>
+          <div class="sep"></div>
+          <div class="fila">
+            <div class="fn"><span>ChatGPT</span><span class="pct">4 de 20</span></div>
+            <div class="barra"><i data-w="20"></i></div>
+            <div class="barra comp"><i data-w="65"></i></div>
+          </div>
+          <div class="fila">
+            <div class="fn"><span>Gemini</span><span class="pct">9 de 20</span></div>
+            <div class="barra"><i data-w="45"></i></div>
+            <div class="barra comp"><i data-w="55"></i></div>
+          </div>
+          <div class="fila">
+            <div class="fn"><span>Perplexity</span><span class="pct">9 de 20</span></div>
+            <div class="barra"><i data-w="45"></i></div>
+            <div class="barra comp"><i data-w="70"></i></div>
+          </div>
+          <div class="leyenda">
+            <span><i></i>Su clínica</span>
+            <span><i class="b"></i>Competidor mejor situado</span>
+          </div>
+          <p class="fpie">Cifras de ejemplo para explicar el formato del informe, no datos de mercado. En su auditoría verá las suyas y las preguntas con las que se obtuvieron.</p>
+        </div>
+        <ol class="pasos-c">
+          <li class="rise">
+            <span class="n">1</span>
+            <div>
+              <h3>Auditoría gratuita, 15 minutos</h3>
+              <p>Nos cuenta su especialidad y su zona. Preparamos entre 40 y 60 preguntas como las que haría un paciente real y las pasamos por los principales motores. Le llamamos para enseñárselo.</p>
+            </div>
+          </li>
+          <li class="rise">
+            <span class="n">2</span>
+            <div>
+              <h3>Informe mensual</h3>
+              <p>Un documento corto, sin jerga: cuántas veces le nombran, en qué motores, qué clínicas salen en su lugar y qué ha cambiado desde el mes anterior. Con las preguntas incluidas para que lo repita.</p>
+            </div>
+          </li>
+          <li class="rise">
+            <span class="n">3</span>
+            <div>
+              <h3>Mejora continua</h3>
+              <p>Trabajamos sobre lo que sí depende de usted: cómo está descrita su clínica, sus fichas, sus reseñas, la información que un motor puede leer y entender. Y volvemos a medir.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. Testimonios ═══
+       ATENCIÓN: los tres testimonios de abajo son EJEMPLOS ILUSTRATIVOS
+       redactados para maquetar la sección. NO son clientes reales y no
+       deben publicarse como tales. Sustituir por citas reales, con permiso
+       por escrito, antes de poner la web en producción; si no las hay
+       todavía, eliminar la sección entera en vez de dejarla con inventos. -->
+  <section class="banda" aria-labelledby="t-testimonios">
+    <div class="grano" aria-hidden="true"></div>
+    <div class="env">
+      <div class="banda-cab">
+        <span class="kick rise">Qué nos dicen</span>
+        <h2 id="t-testimonios" class="rise">La objeción más común es la buena.</h2>
+        <p class="rise">Casi todos llegan escaldados de algo anterior.<br><span class="aviso-ejemplo">Ejemplos ilustrativos · pendientes de sustituir por citas reales</span></p>
+      </div>
+      <div class="citas-c">
+        <figure class="rise">
+          <blockquote>«Llevábamos año y medio pagando posicionamiento sin saber muy bien qué recibíamos a cambio. Aquí por lo menos veo un número, y lo puedo comprobar yo.»</blockquote>
+          <figcaption>Directora · Clínica dental · Valencia</figcaption>
+        </figure>
+        <figure class="rise">
+          <blockquote>«Me pasaron las preguntas y las hice yo mismo en el móvil, delante de ellos. Salían dos clínicas de mi propia calle, y nosotros no.»</blockquote>
+          <figcaption>Gerente · Centro de fisioterapia · Sevilla</figcaption>
+        </figure>
+        <figure class="rise">
+          <blockquote>«Lo que me convenció fue que me dijeran, en la primera llamada, que no me garantizaban nada. Nadie me había dicho eso antes.»</blockquote>
+          <figcaption>Propietaria · Clínica de estética · Madrid</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7. Contacto ═══ -->
+  <section class="banda osc contacto" id="auditoria" aria-labelledby="t-contacto">
+    <div class="grano" aria-hidden="true"></div>
+    <div class="env">
+      <div class="banda-cab">
+        <span class="kick rise">Auditoría gratuita</span>
+        <h2 id="t-contacto" class="rise">Quince minutos. Sin compromiso y sin presentación comercial.</h2>
+        <p class="rise">Déjenos cómo localizarle y le escribimos para cuadrar la llamada. Si vemos que no le hacemos falta, también se lo diremos.</p>
+      </div>
+      <div class="contacto-r">
+        <form data-auditoria novalidate>
+          <div class="form-rejilla">
+            <div class="campo">
+              <label for="nombre">Nombre y apellidos</label>
+              <input id="nombre" name="nombre" type="text" autocomplete="name" required placeholder="María Torres">
+            </div>
+            <div class="campo">
+              <label for="clinica">Clínica</label>
+              <input id="clinica" name="clinica" type="text" autocomplete="organization" required placeholder="Clínica Torres">
+            </div>
+            <div class="campo">
+              <label for="ciudad">Ciudad</label>
+              <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" required placeholder="Valencia">
+            </div>
+            <div class="campo">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" type="tel" autocomplete="tel" required placeholder="600 00 00 00">
+            </div>
+            <div class="campo ancho">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="maria@clinicatorres.es">
+            </div>
+          </div>
+          <div class="envio">
+            <button class="cta" type="submit">Reservar auditoría gratuita<i aria-hidden="true"></i></button>
+            <p class="aviso-form">Solo usamos sus datos para esta llamada.<br>Ni lista de correo, ni cesión a terceros.</p>
+          </div>
+          <p class="acuse" data-acuse hidden tabindex="-1" role="status"></p>
+        </form>
+        <div>
+          <ul class="incluye">
+            <li><b>Entre 40 y 60 preguntas reales</b> pasadas por ChatGPT, Gemini y Perplexity, escritas como las escribiría un paciente.</li>
+            <li><b>Cuántas veces le nombran</b> y en qué tipo de consulta: urgencia, precio, tratamiento concreto o recomendación general.</li>
+            <li><b>Qué clínicas aparecen en su lugar</b> cuando usted no aparece.</li>
+            <li><b>Las preguntas exactas, por escrito</b>, para que repita la prueba usted mismo cuando quiera.</li>
+            <li><b>Una llamada de quince minutos</b> para explicárselo en cristiano. Sin presentación ni propuesta adjunta.</li>
+          </ul>
+          <p class="directo">¿Prefiere escribirnos?<br><a href="mailto:info@vantcapital.io">info@vantcapital.io</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ═══ 8. Pie ═══ -->
+<footer class="pie">
+  <div class="env">
+    <div class="fila">
+      <span class="marca">VANT</span>
+      <nav aria-label="Enlaces del pie">
+        <a href="#auditoria">Auditoría gratuita</a>
+        <a href="mailto:info@vantcapital.io">info@vantcapital.io</a>
+        <!-- TODO: enlazar aviso legal y política de privacidad reales -->
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+      </nav>
+    </div>
+    <p class="legal">VANT mide la visibilidad de clínicas privadas en las respuestas de los asistentes de IA. No estamos afiliados a OpenAI, Google, Perplexity ni Microsoft, y no controlamos sus resultados. Las cifras que aparecen en esta página son ejemplos para explicar el formato del informe.</p>
+  </div>
+</footer>
+
+<script>
+/*@JS@*/
+</script>

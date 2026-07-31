@@ -1,0 +1,440 @@
+<title>VANT — Tres direcciones de hero</title>
+<style>
+/*@FONTS@*/
+
+/* ══════════ BASE COMPARTIDA ══════════ */
+:root{
+  --petroleo:#0E3A3A; --tinta:#0B1616;
+  --laton:#B08D57; --laton-claro:#C9A46B;
+  --papel:#FAF8F3; --crema:#F4EFE7;
+  --linea:#E4E0D7;
+  --texto:#101E1E; --texto-2:#5A6360;
+  --ease:cubic-bezier(.16,.8,.24,1);
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--texto);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--laton);outline-offset:3px}
+
+/* Barra de comparación (solo para esta revisión, no forma parte del sitio) */
+.rev-nav{position:sticky;top:0;z-index:100;display:flex;flex-wrap:wrap;gap:2px;
+  background:var(--tinta);padding:2px}
+.rev-nav a{flex:1 1 120px;text-align:center;padding:11px 8px;text-decoration:none;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,239,231,.62);background:#132323;transition:color .3s var(--ease),background .3s var(--ease)}
+.rev-nav a:hover,.rev-nav a:focus-visible{color:var(--laton-claro);background:#182b2b}
+.rev-label{background:var(--crema);border-bottom:1px solid var(--linea);padding:22px 24px}
+.rev-label .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--laton);margin:0 0 6px}
+.rev-label h2{font-family:var(--serif);font-weight:300;font-size:clamp(20px,3vw,28px);margin:0 0 6px;letter-spacing:-.01em}
+.rev-label p{margin:0;max-width:76ch;font-size:14px;line-height:1.6;color:var(--texto-2)}
+.rev-foot{background:var(--tinta);color:rgba(244,239,231,.6);padding:40px 24px;font-size:13px;line-height:1.7;font-family:var(--mono)}
+.rev-foot strong{color:var(--laton-claro);font-weight:400}
+
+/* Grano reutilizable */
+.grano{position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply}
+
+/* Entradas al scroll */
+.rise{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rise.in{opacity:1;transform:none}
+
+/* ══════════════════════════════════════════════════════════
+   A — «ACTA».  Sin fotografía. Tipografía, hairlines y registro
+   tipográfico de documento notarial. El movimiento vive en una
+   consulta que se teclea sola y en las reglas que se dibujan.
+   ══════════════════════════════════════════════════════════ */
+.hA{position:relative;background:var(--papel);padding:clamp(26px,4vw,44px);overflow:hidden}
+.hA .marco{position:relative;border:1px solid var(--linea);padding:clamp(28px,5vw,72px) clamp(22px,5vw,68px) clamp(34px,5vw,56px);min-height:min(90vh,860px);display:flex;flex-direction:column}
+.hA .cruz{position:absolute;width:9px;height:9px;opacity:.55}
+.hA .cruz::before,.hA .cruz::after{content:'';position:absolute;background:var(--laton)}
+.hA .cruz::before{left:4px;top:0;width:1px;height:9px}
+.hA .cruz::after{top:4px;left:0;height:1px;width:9px}
+.hA .cruz.tl{left:-5px;top:-5px}.hA .cruz.tr{right:-5px;top:-5px}
+.hA .cruz.bl{left:-5px;bottom:-5px}.hA .cruz.br{right:-5px;bottom:-5px}
+
+.hA .cabecera{display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--texto-2)}
+.hA .cabecera .marca{color:var(--texto);letter-spacing:.34em}
+.hA .regla{height:1px;background:var(--linea);margin:16px 0 clamp(34px,6vw,64px);transform-origin:left;
+  transform:scaleX(0);animation:aRegla 1.5s var(--ease) .25s forwards}
+@keyframes aRegla{to{transform:scaleX(1)}}
+
+.hA h1{font-family:var(--serif);font-weight:300;font-variation-settings:'opsz' 96,'SOFT' 0;
+  font-size:clamp(2.35rem,6vw,5.25rem);line-height:.99;letter-spacing:-.025em;margin:0;max-width:19ch;color:var(--texto)}
+.hA h1 em{font-style:italic;font-weight:300;position:relative;white-space:nowrap}
+.hA h1 em::after{content:'';position:absolute;left:0;right:0;bottom:.1em;height:1px;background:var(--laton);
+  transform:scaleX(0);transform-origin:left;animation:aRegla 1.1s var(--ease) 1.05s forwards}
+
+.hA .cuerpo{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,72px);
+  margin-top:clamp(30px,4.5vw,52px);align-items:start}
+.hA .lede{margin:0;font-size:clamp(15px,1.15vw,17px);line-height:1.72;color:var(--texto-2);max-width:48ch}
+.hA .lede b{color:var(--texto);font-weight:500}
+
+/* consulta que se teclea — el elemento con movimiento */
+.hA .consulta{border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding:18px 0;margin:0 0 26px}
+.hA .consulta .et{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--laton);display:block;margin-bottom:9px}
+.hA .consulta .txt{font-family:var(--mono);font-size:clamp(12.5px,1.1vw,14px);line-height:1.55;color:var(--texto);min-height:2.9em;display:block}
+.hA .consulta .caret{display:inline-block;width:7px;height:1.05em;background:var(--petroleo);vertical-align:-.16em;margin-left:2px;animation:aCaret 1.05s steps(1) infinite}
+@keyframes aCaret{50%{opacity:0}}
+
+.hA .registro{list-style:none;margin:0;padding:0;border-top:1px solid var(--linea)}
+.hA .registro li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--linea);
+  font-size:14.5px;line-height:1.5;color:var(--texto-2)}
+.hA .registro .n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--laton);padding-top:3px}
+.hA .registro b{display:block;color:var(--texto);font-weight:500;font-size:15px;margin-bottom:2px}
+
+.hA .pie{margin-top:auto;padding-top:clamp(32px,4vw,50px);display:flex;flex-wrap:wrap;gap:22px 34px;align-items:center}
+.btnA{display:inline-flex;align-items:center;gap:14px;background:var(--petroleo);color:var(--papel);
+  text-decoration:none;padding:17px 26px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;border:1px solid var(--petroleo);transition:background .4s var(--ease),color .4s var(--ease)}
+.btnA .fl{width:22px;height:1px;background:currentColor;transition:width .4s var(--ease)}
+.btnA:hover,.btnA:focus-visible{background:var(--tinta);border-color:var(--tinta)}
+.btnA:hover .fl{width:34px}
+.hA .nota{font-family:var(--mono);font-size:11px;line-height:1.6;letter-spacing:.04em;color:var(--texto-2);max-width:38ch}
+
+@media(max-width:900px){
+  .hA .cuerpo{grid-template-columns:1fr;gap:30px}
+  .hA .cabecera .der{display:none}
+}
+
+/* ══════════════════════════════════════════════════════════
+   B — «VELO».  Plano cinematográfico a sangre, oscuro, con velo
+   petróleo. Aquí irá el vídeo en bucle. El movimiento es el
+   travelling lentísimo del fondo.
+   ══════════════════════════════════════════════════════════ */
+.hB{position:relative;min-height:min(100vh,940px);background:var(--tinta);overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+/* Marcador de posición del futuro vídeo/foto: composición CSS en duotono */
+.hB .placa{position:absolute;inset:-6%;z-index:0;animation:bTravel 34s var(--ease) infinite alternate;
+  background:
+    radial-gradient(120% 90% at 74% 8%, rgba(250,248,243,.30) 0%, rgba(250,248,243,.07) 34%, transparent 62%),
+    radial-gradient(80% 70% at 12% 96%, rgba(14,58,58,.85) 0%, transparent 60%),
+    linear-gradient(168deg,#12292a 0%,#0d1f20 46%,#0a1515 100%)}
+.hB .placa::before{content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,transparent 0 61.5%,rgba(250,248,243,.11) 61.5% 61.7%,transparent 61.7%),
+    linear-gradient(90deg,transparent 0 79%,rgba(250,248,243,.07) 79% 79.15%,transparent 79.15%),
+    linear-gradient(0deg,transparent 0 26%,rgba(250,248,243,.06) 26% 26.12%,transparent 26.12%),
+    linear-gradient(0deg,transparent 0 71%,rgba(250,248,243,.09) 71% 71.15%,transparent 71.15%);
+  transform:perspective(900px) rotateY(-7deg) scale(1.14);filter:blur(.4px)}
+.hB .placa::after{content:'';position:absolute;left:56%;top:-10%;width:34%;height:78%;
+  background:linear-gradient(200deg,rgba(250,248,243,.16),transparent 68%);filter:blur(26px);transform:skewX(-9deg)}
+@keyframes bTravel{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.11) translate3d(-1.6%,-1.1%,0)}}
+.hB .velo{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(11,22,22,.72) 0%,rgba(14,58,58,.80) 44%,rgba(11,22,22,.94) 100%)}
+.hB .vineta{position:absolute;inset:0;z-index:1;background:radial-gradient(115% 85% at 50% 42%,transparent 40%,rgba(11,22,22,.75) 100%)}
+.hB .grano{z-index:2;opacity:.07;mix-blend-mode:overlay}
+
+.hB .interior{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;
+  padding:clamp(26px,4vw,52px) clamp(22px,5vw,72px) 0;max-width:1320px;width:100%;margin:0 auto}
+.hB .top{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,231,.55)}
+.hB .top .marca{color:var(--crema);letter-spacing:.36em;font-size:12px}
+.hB .centro{margin-top:auto;padding-bottom:clamp(34px,5vw,58px);max-width:1000px}
+.hB .kick{display:inline-flex;align-items:center;gap:11px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--laton-claro);margin-bottom:clamp(20px,3vw,30px)}
+.hB .kick::before{content:'';width:26px;height:1px;background:var(--laton)}
+.hB h1{font-family:var(--serif);font-weight:300;font-variation-settings:'opsz' 120;
+  font-size:clamp(2.3rem,5.9vw,5.1rem);line-height:1.03;letter-spacing:-.022em;color:var(--crema);margin:0;max-width:17ch}
+.hB h1 span{color:var(--laton-claro)}
+.hB .lede{margin:clamp(20px,2.6vw,30px) 0 0;max-width:56ch;font-size:clamp(15px,1.15vw,17.5px);
+  line-height:1.68;color:rgba(244,239,231,.74)}
+.hB .lede b{color:var(--crema);font-weight:500}
+.hB .acciones{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:clamp(28px,3.4vw,40px)}
+.btnB{display:inline-flex;align-items:center;gap:14px;padding:17px 28px;text-decoration:none;
+  border:1px solid var(--laton);color:var(--crema);background:transparent;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  transition:background .45s var(--ease),color .45s var(--ease)}
+.btnB .fl{width:22px;height:1px;background:currentColor;transition:width .45s var(--ease)}
+.btnB:hover,.btnB:focus-visible{background:var(--laton-claro);color:var(--tinta)}
+.btnB:hover .fl{width:34px}
+.hB .micro{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:rgba(244,239,231,.5);max-width:34ch;line-height:1.6}
+.hB .franja{position:relative;z-index:3;border-top:1px solid rgba(228,224,215,.15);overflow:hidden;
+  padding:15px 0;background:rgba(11,22,22,.4)}
+.hB .pista{display:flex;gap:56px;width:max-content;animation:bMarquee 26s linear infinite;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,239,231,.52);white-space:nowrap}
+.hB .pista span{display:inline-flex;align-items:center;gap:56px}
+.hB .pista span::after{content:'';width:4px;height:4px;background:var(--laton);border-radius:50%;opacity:.85}
+@keyframes bMarquee{to{transform:translateX(-50%)}}
+.hB .scroll{position:absolute;left:clamp(22px,5vw,72px);bottom:96px;z-index:3;display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,231,.4)}
+.hB .scroll i{display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--laton),transparent);
+  animation:bScroll 2.6s var(--ease) infinite}
+@keyframes bScroll{0%{transform:scaleY(.25);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:880px){.hB .scroll{display:none}}
+
+/* ══════════════════════════════════════════════════════════
+   C — «FICHA».  Partido: argumento a la izquierda, la prueba a la
+   derecha. La medición se enseña en la primera pantalla, con el
+   contador animándose y las barras llenándose.
+   ══════════════════════════════════════════════════════════ */
+.hC{position:relative;background:var(--crema);overflow:hidden;padding:clamp(30px,4.5vw,58px) clamp(22px,5vw,68px) clamp(40px,5vw,68px)}
+.hC .rejilla{position:absolute;inset:0;pointer-events:none;opacity:.34;
+  background-image:linear-gradient(90deg,var(--linea) 1px,transparent 1px);background-size:clamp(60px,8vw,120px) 100%}
+.hC .interior{position:relative;z-index:2;max-width:1320px;margin:0 auto}
+.hC .top{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding-bottom:16px;border-bottom:1px solid var(--linea);
+  font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--texto-2)}
+.hC .top .marca{color:var(--texto);letter-spacing:.34em;font-size:12px}
+.hC .split{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(32px,5vw,80px);
+  align-items:center;padding:clamp(34px,5.5vw,74px) 0 0;min-height:min(76vh,780px)}
+.hC .kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--laton);margin-bottom:22px}
+.hC .kick::before{content:'';width:22px;height:1px;background:var(--laton)}
+.hC h1{font-family:var(--serif);font-weight:300;font-variation-settings:'opsz' 84;
+  font-size:clamp(2.15rem,4.7vw,4.15rem);line-height:1.04;letter-spacing:-.022em;margin:0;max-width:15ch}
+.hC .lede{margin:24px 0 0;max-width:50ch;font-size:clamp(15px,1.1vw,16.5px);line-height:1.72;color:var(--texto-2)}
+.hC .lede b{color:var(--texto);font-weight:500}
+.btnC{display:inline-flex;align-items:center;gap:14px;margin-top:32px;background:var(--petroleo);color:var(--papel);
+  text-decoration:none;padding:18px 28px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--petroleo);transition:background .4s var(--ease)}
+.btnC .fl{width:22px;height:1px;background:currentColor;transition:width .4s var(--ease)}
+.btnC:hover,.btnC:focus-visible{background:var(--tinta)}
+.btnC:hover .fl{width:34px}
+.hC .sellos{display:flex;flex-wrap:wrap;gap:0;margin-top:34px;border-top:1px solid var(--linea)}
+.hC .sellos li{list-style:none;flex:1 1 130px;padding:14px 16px 0 0;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--texto-2)}
+
+.fichaC{position:relative;background:var(--papel);border:1px solid var(--linea);padding:clamp(22px,2.6vw,34px)}
+.fichaC::before{content:'';position:absolute;left:-1px;top:-1px;width:38px;height:2px;background:var(--laton)}
+.fichaC .fh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-2)}
+.fichaC .fh .tag{color:var(--laton)}
+.fichaC .cifra{display:flex;align-items:flex-end;gap:16px;margin:26px 0 6px}
+.fichaC .cifra .num{font-family:var(--serif);font-weight:300;font-variation-settings:'opsz' 144;
+  font-size:clamp(3.6rem,8vw,5.6rem);line-height:.86;letter-spacing:-.03em;color:var(--petroleo);font-variant-numeric:tabular-nums}
+.fichaC .cifra .desc{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--texto-2);line-height:1.6;padding-bottom:8px;max-width:17ch}
+.fichaC .sep{height:1px;background:var(--linea);margin:22px 0}
+.fichaC .fila{padding:15px 0;border-bottom:1px solid var(--linea)}
+.fichaC .fila:last-of-type{border-bottom:0}
+.fichaC .fn{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:11px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;color:var(--texto)}
+.fichaC .fn .pct{color:var(--texto-2);font-size:11px}
+.fichaC .barra{position:relative;height:7px;background:var(--crema);margin-bottom:6px;overflow:hidden}
+.fichaC .barra i{position:absolute;inset:0 auto 0 0;width:0;background:var(--petroleo);transition:width 1.5s var(--ease)}
+.fichaC .barra.comp i{background:var(--laton);opacity:.55}
+.fichaC .leyenda{display:flex;gap:20px;margin-top:16px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--texto-2)}
+.fichaC .leyenda span{display:inline-flex;align-items:center;gap:7px}
+.fichaC .leyenda i{width:14px;height:6px;background:var(--petroleo);display:block}
+.fichaC .leyenda i.b{background:var(--laton);opacity:.55}
+.fichaC .fpie{margin:22px -0 0;padding-top:16px;border-top:1px solid var(--linea);
+  font-family:var(--mono);font-size:10.5px;line-height:1.65;letter-spacing:.03em;color:var(--texto-2)}
+@media(max-width:940px){
+  .hC .split{grid-template-columns:1fr;gap:44px;padding-top:40px}
+  .hC .rejilla{display:none}
+}
+
+/* ══════════ Movimiento reducido ══════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rise{opacity:1;transform:none}
+  .hA .regla,.hA h1 em::after{transform:scaleX(1)}
+}
+</style>
+
+<nav class="rev-nav" aria-label="Comparar versiones de hero">
+  <a href="#va">A — Acta</a>
+  <a href="#vb">B — Velo</a>
+  <a href="#vc">C — Ficha</a>
+</nav>
+
+<!-- ═══════════════ A ═══════════════ -->
+<div class="rev-label" id="va">
+  <p class="k">Dirección A</p>
+  <h2>Acta — autoridad puramente tipográfica</h2>
+  <p>Sin fotografía. Un marco de hairlines con marcas de registro, como el acta de una notaría. El movimiento es discreto: las reglas se dibujan al cargar y una consulta real de paciente se teclea sola en monoespaciada. Es la más sobria de las tres y la que menos depende de los assets generados — la foto solo aparecería en secciones posteriores.</p>
+</div>
+<header class="hA">
+  <div class="marco">
+    <span class="cruz tl"></span><span class="cruz tr"></span><span class="cruz bl"></span><span class="cruz br"></span>
+    <div class="cabecera">
+      <span class="marca">VANT</span>
+      <span class="der">Visibilidad en IA · Clínicas privadas</span>
+    </div>
+    <div class="regla"></div>
+    <h1>Sus pacientes ya no buscan. <em>Preguntan.</em> Y la IA responde con nombres.</h1>
+    <div class="cuerpo">
+      <div>
+        <p class="lede">Cada mes medimos si su clínica aparece cuando ChatGPT, Gemini o Perplexity recomiendan un profesional en su ciudad. <b>No prometemos un puesto ni un ranking:</b> esas respuestas son probabilísticas y nadie las controla, ni nosotros ni nadie que le diga lo contrario. Prometemos medición que usted mismo puede comprobar, y trabajo constante sobre lo que sí depende de usted.</p>
+      </div>
+      <div>
+        <div class="consulta">
+          <span class="et">Un paciente escribe ahora mismo</span>
+          <span class="txt" id="aTxt" aria-live="off"></span>
+        </div>
+        <ul class="registro">
+          <li><span class="n">01</span><span><b>Lo comprueba usted</b>Le enviamos las preguntas exactas. Las repite y ve lo mismo.</span></li>
+          <li><span class="n">02</span><span><b>Sabe contra quién compite</b>Qué clínicas se nombran en su lugar, y con qué frecuencia.</span></li>
+          <li><span class="n">03</span><span><b>Sin permanencia</b>Se queda mientras le sirva. Ni un mes más.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie">
+      <a class="btnA" href="#"><span>Reservar auditoría gratuita</span><span class="fl" aria-hidden="true"></span></a>
+      <p class="nota">15 minutos. Sin compromiso. Salga con un dato que hoy no tiene.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ B ═══════════════ -->
+<div class="rev-label" id="vb">
+  <p class="k">Dirección B</p>
+  <h2>Velo — plano cinematográfico a sangre</h2>
+  <p>Pantalla completa en oscuro con velo petróleo al 80 %. Aquí es donde iría el vídeo en bucle de Higgsfield; lo que ve ahora es un marcador de posición hecho solo con CSS (luz de ventana, aristas de arquitectura, grano) que ya se mueve con el mismo travelling lentísimo que tendría el vídeo. Es la más impactante y la que más peso pone en los assets.</p>
+</div>
+<header class="hB">
+  <div class="placa" aria-hidden="true"></div>
+  <div class="velo" aria-hidden="true"></div>
+  <div class="vineta" aria-hidden="true"></div>
+  <div class="grano" aria-hidden="true"></div>
+  <div class="interior">
+    <div class="top">
+      <span class="marca">VANT</span>
+      <span>Auditoría gratuita · 15 min</span>
+    </div>
+    <div class="centro">
+      <span class="kick">Visibilidad en IA para clínicas privadas</span>
+      <h1>Hay una conversación sobre su clínica. Usted no está <span>en la sala.</span></h1>
+      <p class="lede">Cuando un paciente le pregunta a una inteligencia artificial a qué clínica ir, esa respuesta nombra a unas y calla a otras. <b>Medimos si le nombra a usted</b> — cada mes, con las preguntas exactas para que lo verifique por su cuenta. Nadie puede garantizarle un puesto en esas respuestas. Nosotros tampoco lo hacemos.</p>
+      <div class="acciones">
+        <a class="btnB" href="#"><span>Reservar auditoría gratuita</span><span class="fl" aria-hidden="true"></span></a>
+        <p class="micro">15 minutos · Sin permanencia · Le decimos también si no le hacemos falta</p>
+      </div>
+    </div>
+  </div>
+  <div class="scroll" aria-hidden="true"><i></i><span>Desplácese</span></div>
+  <div class="franja" aria-label="Motores de IA que medimos">
+    <div class="pista">
+      <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span><span>Google AI Overviews</span><span>Copilot</span>
+      <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span><span>Google AI Overviews</span><span>Copilot</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ C ═══════════════ -->
+<div class="rev-label" id="vc">
+  <p class="k">Dirección C</p>
+  <h2>Ficha — el argumento a la izquierda, la prueba a la derecha</h2>
+  <p>Enseña el producto en la primera pantalla: una ficha de medición con el contador animándose y las barras «su clínica vs. competencia» llenándose al entrar. Marcada como ejemplo ilustrativo en la propia tarjeta, no en letra pequeña. Es la más comercial y la que mejor explica de qué va VANT sin tener que hacer scroll.</p>
+</div>
+<header class="hC">
+  <div class="rejilla" aria-hidden="true"></div>
+  <div class="grano" aria-hidden="true"></div>
+  <div class="interior">
+    <div class="top">
+      <span class="marca">VANT</span>
+      <span>Medición de visibilidad en IA</span>
+    </div>
+    <div class="split">
+      <div>
+        <span class="kick">Clínicas privadas · 2 a 5 profesionales</span>
+        <h1>¿Le nombra la IA cuando un paciente pregunta por su especialidad?</h1>
+        <p class="lede">Es una pregunta con respuesta. La medimos cada mes en ChatGPT, Gemini y Perplexity, y le entregamos las preguntas exactas para que lo compruebe usted mismo. <b>No vendemos posiciones garantizadas</b> — esas respuestas son probabilísticas y nadie las controla. Vendemos saber dónde está, contra quién, y qué mover.</p>
+        <a class="btnC" href="#"><span>Reservar auditoría gratuita</span><span class="fl" aria-hidden="true"></span></a>
+        <ul class="sellos">
+          <li>15 minutos</li><li>Sin permanencia</li><li>Informe mensual</li><li>Verificable por usted</li>
+        </ul>
+      </div>
+      <div class="fichaC" id="cFicha">
+        <div class="fh"><span>Medición mensual</span><span class="tag">Ejemplo ilustrativo</span></div>
+        <div class="cifra">
+          <span class="num" id="cNum">0%</span>
+          <span class="desc">Tasa de aparición<br>en 60 consultas</span>
+        </div>
+        <div class="sep"></div>
+        <div class="fila">
+          <div class="fn"><span>ChatGPT</span><span class="pct">4 de 20</span></div>
+          <div class="barra"><i data-w="20"></i></div>
+          <div class="barra comp"><i data-w="65"></i></div>
+        </div>
+        <div class="fila">
+          <div class="fn"><span>Gemini</span><span class="pct">9 de 20</span></div>
+          <div class="barra"><i data-w="45"></i></div>
+          <div class="barra comp"><i data-w="55"></i></div>
+        </div>
+        <div class="fila">
+          <div class="fn"><span>Perplexity</span><span class="pct">9 de 20</span></div>
+          <div class="barra"><i data-w="45"></i></div>
+          <div class="barra comp"><i data-w="70"></i></div>
+        </div>
+        <div class="leyenda">
+          <span><i></i>Su clínica</span>
+          <span><i class="b"></i>Competidor mejor situado</span>
+        </div>
+        <p class="fpie">Cifras de ejemplo, no datos de mercado. En su auditoría verá las suyas y las preguntas con las que se obtuvieron.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="rev-foot">
+  Tres direcciones, no tres colores. <strong>Elija una</strong> y genero tres variantes del cuerpo completo en esa misma línea.<br>
+  Todavía no se ha gastado ningún crédito de Higgsfield — los assets se generan cuando la dirección esté cerrada.
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* A — consulta que se teclea */
+  var el = document.getElementById('aTxt');
+  var frases = [
+    '"mejor clínica dental para implantes en Valencia"',
+    '"¿a qué fisioterapeuta voy con una hernia cervical?"',
+    '"clínicas de estética serias cerca de Chamberí"'
+  ];
+  if (el) {
+    if (reduce) { el.textContent = frases[0]; }
+    else {
+      var caret = document.createElement('span');
+      caret.className = 'caret'; caret.setAttribute('aria-hidden','true');
+      var txt = document.createTextNode('');
+      el.appendChild(txt); el.appendChild(caret);
+      var i = 0, j = 0, borrando = false;
+      (function tick(){
+        var f = frases[i];
+        j += borrando ? -1 : 1;
+        txt.nodeValue = f.slice(0, j);
+        var d = borrando ? 22 : 46;
+        if (!borrando && j === f.length) { borrando = true; d = 2100; }
+        else if (borrando && j === 0) { borrando = false; i = (i+1) % frases.length; d = 380; }
+        setTimeout(tick, d);
+      })();
+    }
+  }
+
+  /* C — contador y barras al entrar en pantalla */
+  var ficha = document.getElementById('cFicha');
+  var num = document.getElementById('cNum');
+  function animaFicha(){
+    ficha.querySelectorAll('.barra i').forEach(function(b,k){
+      setTimeout(function(){ b.style.width = b.dataset.w + '%'; }, reduce ? 0 : 120 * k);
+    });
+    var fin = 37;
+    if (reduce) { num.textContent = fin + '%'; return; }
+    var t0 = null, dur = 1500;
+    requestAnimationFrame(function paso(t){
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      num.textContent = Math.round(e * fin) + '%';
+      if (p < 1) requestAnimationFrame(paso);
+    });
+  }
+  if (ficha) {
+    if (!('IntersectionObserver' in window)) animaFicha();
+    else {
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting){ animaFicha(); io.disconnect(); } });
+      }, {threshold:.35});
+      io.observe(ficha);
+    }
+  }
+})();
+</script>

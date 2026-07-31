@@ -1,0 +1,44 @@
+<header class="hero">
+  <div class="foto" aria-hidden="true">
+   <div class="placa">
+    <!-- La fotografía. El travelling lento no lo hace un vídeo: lo hace la
+         animación de .placa, que arrastra despacio esta imagen fija.
+         Sin `loading="lazy"` y con `fetchpriority="high"`: es la imagen
+         principal de la página y debe empezar a cargar cuanto antes.
+         Va ya en escala de grises desde el archivo, así pesa menos; el velo
+         petróleo lo pone el CSS encima. Decorativa, de ahí el alt vacío. -->
+    <img src="assets/clinica-poster.jpg"
+         srcset="assets/clinica-poster-1200.jpg 1200w, assets/clinica-poster.jpg 2400w"
+         sizes="100vw" alt="" decoding="async" fetchpriority="high">
+
+    <!-- Vídeo diferido y silencioso, opcional. Si algún día hay bucle, se
+         rellenan las dos rutas y core.js lo activa solo: nunca en móvil, ni
+         con conexión lenta, ni con movimiento reducido, y siempre con el
+         póster debajo. Mientras las rutas estén vacías no se pide nada a la
+         red y se ve la composición CSS de .placa, con el mismo duotono. -->
+    <video muted loop playsinline preload="none" aria-hidden="true"
+           data-src="" data-poster=""></video>
+   </div>
+  </div>
+  <div class="velo" aria-hidden="true"></div>
+  <div class="vineta" aria-hidden="true"></div>
+  <div class="grano" aria-hidden="true"></div>
+
+  <div class="interior">
+    <div class="top">
+      <a class="marca" href="#inicio">VANT</a>
+      <span>Auditoría gratuita · 15 min</span>
+    </div>
+    <div class="centro">
+      <span class="kick rise">Visibilidad en IA para clínicas privadas</span>
+      <h1 class="rise">Hay una conversación sobre su clínica. Usted no está <span>en la sala.</span></h1>
+      <p class="lede rise">Cuando un paciente le pregunta a una inteligencia artificial a qué clínica ir, esa respuesta nombra a unas y calla a otras. <b>Medimos si le nombra a usted</b> — cada mes, con las preguntas exactas para que lo verifique por su cuenta. Nadie puede garantizarle un puesto en esas respuestas. Nosotros tampoco lo hacemos.</p>
+      <div class="acciones rise">
+        <a class="cta" href="#auditoria">Reservar auditoría gratuita<i aria-hidden="true"></i></a>
+        <p class="micro">15 minutos · Sin permanencia · Le decimos también si no le hacemos falta</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll" aria-hidden="true"><i></i><span>Desplácese</span></div>
+</header>
