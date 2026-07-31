@@ -57,8 +57,8 @@
     <div class="aj-campo">
       <label for="aj-hero">Fondo del hero</label>
       <select id="aj-hero">
+        <option value="claro">Claro a sangre — la foto en tinta sobre papel</option>
         <option value="panel">Claro con panel — la foto en columna propia</option>
-        <option value="claro">Claro a sangre — la foto velada en papel</option>
         <option value="oscuro">Oscuro a sangre — velo petróleo</option>
       </select>
     </div>
@@ -195,7 +195,7 @@
 
   /* ── Estado ──────────────────────────────────────────────── */
   var por_defecto = {
-    hero: 'panel', serif: "'Fraunces',Georgia,serif", peso: 300, opsz: 72, base: 16,
+    hero: 'claro', serif: "'Fraunces',Georgia,serif", peso: 300, opsz: 72, base: 16,
     acento: '#B08D57', grano: 4.5, vel: 1, seccion: 88, margen: 72, velo: 80
   };
   var estado = Object.assign({}, por_defecto);

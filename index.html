@@ -211,7 +211,7 @@ p,figure,blockquote{margin:0}
   --hero-suave:var(--texto-2);
   --hero-tenue:var(--texto-2);  /* el mono de 10-11 px necesita AA de texto normal */
   --hero-velo:.80;              /* opacidad del velo sobre la fotografía */
-  --hero-foto:grayscale(1) contrast(.92) brightness(1.24);
+  --hero-foto:grayscale(1) contrast(1.02) brightness(1.06);
   --hero-mezcla:multiply;
   --acento-txt:#836336;         /* latón legible sobre papel */
 
@@ -260,14 +260,19 @@ p,figure,blockquote{margin:0}
 .hero .placa video{opacity:0;transition:opacity calc(1.2s / var(--vel)) var(--ease)}
 .hero .placa video.visible{opacity:1}
 
-/* El velo. En claro es papel y deja la fotografía como una estampa
-   pálida; en oscuro es petróleo. La opacidad sale de --hero-velo, así
-   que el mismo control de la barra de ajustes sirve para las dos. */
+/* El velo. En claro son dos capas: primero la tinta petróleo sobre el
+   gris de la fotografía —eso es el duotono— y encima el papel, que la
+   sube de tono sin apagarla. Una sola capa de papel dejaba un gris
+   lavado, sin color ni carácter. En oscuro basta el petróleo. La
+   opacidad sale de --hero-velo, así que el mismo control de la barra de
+   ajustes sirve para las dos versiones. */
 .hero .velo{position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,
-    rgba(250,248,243,calc(var(--hero-velo) * .96)) 0%,
-    rgba(244,239,231,var(--hero-velo)) 46%,
-    rgba(250,248,243,calc(var(--hero-velo) * 1.06)) 100%)}
+  background:
+    linear-gradient(180deg,
+      rgba(250,248,243,calc(var(--hero-velo) * .94)) 0%,
+      rgba(244,239,231,calc(var(--hero-velo) * .98)) 46%,
+      rgba(250,248,243,calc(var(--hero-velo) * 1.04)) 100%),
+    linear-gradient(196deg,rgba(14,58,58,.55) 0%,rgba(11,22,22,.62) 100%)}
 .hero--oscuro .velo{
   background:linear-gradient(180deg,
     rgba(11,22,22,calc(var(--hero-velo) * .9)) 0%,
@@ -281,6 +286,9 @@ p,figure,blockquote{margin:0}
 .hero .vineta{position:absolute;inset:0;z-index:1;
   background:
     linear-gradient(101deg,rgba(250,248,243,.90) 0%,rgba(250,248,243,.64) 34%,rgba(250,248,243,.2) 56%,transparent 72%),
+    /* El párrafo y la letra pequeña viven abajo: ahí se sube el papel un
+       punto más, que es donde la tinta les restaba contraste. */
+    linear-gradient(0deg,rgba(250,248,243,.62) 0%,rgba(250,248,243,.3) 26%,transparent 48%),
     radial-gradient(118% 88% at 52% 40%,transparent 44%,rgba(244,239,231,.72) 100%)}
 .hero--oscuro .vineta{
   background:
@@ -293,6 +301,7 @@ p,figure,blockquote{margin:0}
 @media(max-width:900px){
   .hero .vineta{background:
     linear-gradient(101deg,rgba(250,248,243,.5) 0%,rgba(250,248,243,.28) 40%,transparent 74%),
+    linear-gradient(0deg,rgba(250,248,243,.68) 0%,rgba(250,248,243,.38) 34%,transparent 58%),
     radial-gradient(120% 80% at 50% 38%,transparent 48%,rgba(244,239,231,.68) 100%)}
   .hero--oscuro .vineta{background:
     linear-gradient(101deg,rgba(11,22,22,.34) 0%,rgba(11,22,22,.18) 38%,transparent 72%),
@@ -511,7 +520,7 @@ p,figure,blockquote{margin:0}
 <div class="progreso" aria-hidden="true"><i></i></div>
 <a id="inicio"></a>
 
-<header class="hero hero--panel">
+<header class="hero">
   <div class="foto" aria-hidden="true">
    <div class="placa">
     <!-- La fotografía. El travelling lento no lo hace un vídeo: lo hace la
