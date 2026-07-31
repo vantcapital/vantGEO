@@ -34,8 +34,24 @@
 
 .hero .velo{position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(11,22,22,.72) 0%,rgba(14,58,58,.80) 44%,rgba(11,22,22,.94) 100%)}
+/* Viñeta general, más una penumbra que baja por el flanco izquierdo: es el
+   lado donde vive todo el texto, y la fotografía puede tener ahí una zona
+   clara. Sin ella, el latón del titular se quedaba en 3,06:1 sobre la parte
+   iluminada — justo en el límite. Es un degradado ancho y suave, así que no
+   se lee como una caja detrás del texto. */
 .hero .vineta{position:absolute;inset:0;z-index:1;
-  background:radial-gradient(115% 85% at 50% 42%,transparent 40%,rgba(11,22,22,.75) 100%)}
+  background:
+    linear-gradient(101deg,rgba(11,22,22,.62) 0%,rgba(11,22,22,.34) 32%,rgba(11,22,22,.06) 55%,transparent 68%),
+    radial-gradient(115% 85% at 50% 42%,transparent 40%,rgba(11,22,22,.75) 100%)}
+/* En pantalla estrecha la fotografía ya se ve muy recortada, y con la
+   penumbra a plena potencia desaparecía del todo. Se rebaja: el contraste
+   sigue por encima de AA porque ahí el texto ocupa todo el ancho y no cae
+   sobre la zona más clara. */
+@media(max-width:900px){
+  .hero .vineta{background:
+    linear-gradient(101deg,rgba(11,22,22,.34) 0%,rgba(11,22,22,.18) 38%,transparent 72%),
+    radial-gradient(120% 80% at 50% 38%,transparent 46%,rgba(11,22,22,.72) 100%)}
+}
 .hero .grano{z-index:2;mix-blend-mode:overlay;opacity:calc(var(--grano) * 1.5)}
 
 .hero .interior{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;

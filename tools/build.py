@@ -41,6 +41,26 @@ RAIZ = os.path.dirname(AQUI)
 def parcial(ruta):
     return open(os.path.join(RAIZ, ruta)).read()
 
+
+def incrusta_imagenes(html):
+    """Mete las imagenes de assets/ como data URI.
+
+    Solo para las compilaciones de desarrollo y de revision: el sitio real
+    sirve los archivos sueltos, que se cachean y se eligen por srcset. Esto
+    existe para que una copia unica del HTML pueda verse fuera del proyecto,
+    sin la carpeta assets/ al lado.
+    """
+    import mimetypes
+    for ruta in sorted(set(re.findall(r"assets/[\w.-]+\.(?:jpg|jpeg|png|webp|mp4)", html)), key=len, reverse=True):
+        entera = os.path.join(RAIZ, ruta)
+        if not os.path.exists(entera):
+            continue
+        tipo = mimetypes.guess_type(entera)[0] or "application/octet-stream"
+        with open(entera, "rb") as f:
+            datos = base64.b64encode(f.read()).decode()
+        html = html.replace(ruta, "data:%s;base64,%s" % (tipo, datos))
+    return html
+
 if __name__ == "__main__":
     origen, destino = sys.argv[1], sys.argv[2]
     produccion = "--produccion" in sys.argv
@@ -53,5 +73,8 @@ if __name__ == "__main__":
     html = html.replace("/*@CORE@*/", parcial("src/core.css")).replace("/*@JS@*/", parcial("src/core.js"))
     # Inclusiones genericas:  /*@FILE:ruta@*/  o  <!--@FILE:ruta@-->
     html = re.sub(r"(?:/\*|<!--)@FILE:([^@]+)@(?:\*/|-->)", lambda m: parcial(m.group(1).strip()), html)
+    # Despues de las inclusiones: las rutas de imagen viven en los parciales.
+    if not produccion:
+        html = incrusta_imagenes(html)
     open(destino, "w").write(html)
     print(destino, os.path.getsize(destino) // 1024, "KB")

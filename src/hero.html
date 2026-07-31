@@ -1,10 +1,14 @@
 <header class="hero">
   <div class="placa" aria-hidden="true">
-    <!-- La fotografía. En cuanto exista assets/clinica-poster.jpg, basta con
-         descomentar esta línea: el travelling lento no lo hace el vídeo, lo
-         hace la animación de .placa, así que la imagen fija se mueve igual.
-         Sin `loading="lazy"`: es la imagen principal y debe cargar cuanto antes. -->
-    <!-- <img src="assets/clinica-poster.jpg" alt="" decoding="async" fetchpriority="high"> -->
+    <!-- La fotografía. El travelling lento no lo hace un vídeo: lo hace la
+         animación de .placa, que arrastra despacio esta imagen fija.
+         Sin `loading="lazy"` y con `fetchpriority="high"`: es la imagen
+         principal de la página y debe empezar a cargar cuanto antes.
+         Va ya en escala de grises desde el archivo, así pesa menos; el velo
+         petróleo lo pone el CSS encima. Decorativa, de ahí el alt vacío. -->
+    <img src="assets/clinica-poster.jpg"
+         srcset="assets/clinica-poster-1200.jpg 1200w, assets/clinica-poster.jpg 2400w"
+         sizes="100vw" alt="" decoding="async" fetchpriority="high">
 
     <!-- Vídeo diferido y silencioso, opcional. Si algún día hay bucle, se
          rellenan las dos rutas y core.js lo activa solo: nunca en móvil, ni

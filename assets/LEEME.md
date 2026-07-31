@@ -4,7 +4,8 @@ Suelta aquí los dos archivos del hero, con estos nombres exactos:
 
 | Archivo | Qué es |
 |---|---|
-| `clinica-poster.jpg` | La fotografía del interior de la clínica. Es el único archivo necesario. |
+| `clinica-poster.jpg` | La fotografía del hero, 2400 px. Ya en escala de grises: el velo petróleo lo pone el CSS encima. |
+| `clinica-poster-1200.jpg` | La misma, a 1200 px, para pantallas pequeñas vía `srcset`. |
 | `clinica-loop.mp4` | Bucle corto y silencioso. Opcional, y hoy no existe: generar vídeo en Higgsfield exige plan de pago. |
 
 **El movimiento no depende del vídeo.** El travelling lento lo hace la
