@@ -252,7 +252,9 @@ p,figure,blockquote{margin:0}
 .hero .lede b{color:var(--crema);font-weight:500}
 .hero .acciones{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:clamp(28px,3.4vw,40px)}
 .hero .micro{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--crema-50);max-width:34ch}
-.hero .scroll{position:absolute;left:var(--margen);bottom:92px;z-index:3;display:flex;align-items:center;gap:12px;
+/* A la derecha y abajo del todo: el CTA manda en la esquina izquierda
+   y este indicador no debe disputarle el sitio. */
+.hero .scroll{position:absolute;right:var(--margen);bottom:30px;z-index:3;display:flex;align-items:center;gap:12px;
   font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,231,.4)}
 .hero .scroll i{display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--acento),transparent);
   animation:bajada calc(2.6s / var(--vel)) var(--ease) infinite}
@@ -398,10 +400,13 @@ section{position:relative}
   <div class="placa" aria-hidden="true">
     <!-- Vídeo diferido y silencioso. El póster estático se ve siempre y es
          lo único que se carga en móvil, con conexión lenta o con movimiento
-         reducido. data-src lo activa core.js cuando procede.
-         TODO(assets): sustituir por los archivos generados con Higgsfield. -->
+         reducido; core.js activa el vídeo solo cuando procede.
+         TODO(assets): rellenar las dos rutas con los archivos generados en
+         Higgsfield (assets/clinica-loop.mp4 y assets/clinica-poster.jpg).
+         Mientras estén vacías no se pide nada a la red y se ve la composición
+         CSS de .placa, que ya lleva el mismo tratamiento duotono. -->
     <video muted loop playsinline preload="none" aria-hidden="true"
-           data-src="assets/clinica-loop.mp4" poster="assets/clinica-poster.jpg"></video>
+           data-src="" data-poster=""></video>
   </div>
   <div class="velo" aria-hidden="true"></div>
   <div class="vineta" aria-hidden="true"></div>
@@ -845,6 +850,10 @@ section{position:relative}
   function video() {
     var v = document.querySelector('video[data-src]');
     if (!v) return;
+    /* El póster se pone siempre: es el respaldo estático en móvil, con
+       conexión lenta y con movimiento reducido. */
+    if (v.dataset.poster) v.poster = v.dataset.poster;
+    if (!v.dataset.src) return;          /* aún sin assets: se ve .placa */
     var con = navigator.connection || {};
     var lenta = con.saveData === true || /2g/.test(con.effectiveType || '');
     if (quieto || lenta || window.innerWidth < 720) return;

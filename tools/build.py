@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Inserta las tipografias (woff2, subconjunto latino) como data URI dentro del HTML.
 
-Uso:  python3 tools/build.py src.html destino.html
+Uso:  python3 tools/build.py src.html destino.html [--produccion]
+Con --produccion se omite la barra de ajustes flotante.
 El HTML de origen debe contener el marcador  /*@FONTS@*/  dentro de su <style>.
 Opcionalmente, /*@CORE@*/ y /*@JS@*/ insertan src/core.css y src/core.js, y
 /*@FILE:ruta@*/ o <!--@FILE:ruta@--> insertan cualquier otro parcial.
@@ -42,7 +43,10 @@ def parcial(ruta):
 
 if __name__ == "__main__":
     origen, destino = sys.argv[1], sys.argv[2]
+    produccion = "--produccion" in sys.argv
     html = open(origen).read()
+    # La barra de ajustes solo viaja en las compilaciones de desarrollo.
+    html = html.replace("<!--@AJUSTES@-->", "" if produccion else parcial("src/ajustes.html"))
     if "/*@FONTS@*/" not in html:
         sys.exit("falta el marcador /*@FONTS@*/ en " + origen)
     html = html.replace("/*@FONTS@*/", fuentes())

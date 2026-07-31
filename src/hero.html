@@ -2,10 +2,13 @@
   <div class="placa" aria-hidden="true">
     <!-- Vídeo diferido y silencioso. El póster estático se ve siempre y es
          lo único que se carga en móvil, con conexión lenta o con movimiento
-         reducido. data-src lo activa core.js cuando procede.
-         TODO(assets): sustituir por los archivos generados con Higgsfield. -->
+         reducido; core.js activa el vídeo solo cuando procede.
+         TODO(assets): rellenar las dos rutas con los archivos generados en
+         Higgsfield (assets/clinica-loop.mp4 y assets/clinica-poster.jpg).
+         Mientras estén vacías no se pide nada a la red y se ve la composición
+         CSS de .placa, que ya lleva el mismo tratamiento duotono. -->
     <video muted loop playsinline preload="none" aria-hidden="true"
-           data-src="assets/clinica-loop.mp4" poster="assets/clinica-poster.jpg"></video>
+           data-src="" data-poster=""></video>
   </div>
   <div class="velo" aria-hidden="true"></div>
   <div class="vineta" aria-hidden="true"></div>

@@ -132,6 +132,10 @@
   function video() {
     var v = document.querySelector('video[data-src]');
     if (!v) return;
+    /* El póster se pone siempre: es el respaldo estático en móvil, con
+       conexión lenta y con movimiento reducido. */
+    if (v.dataset.poster) v.poster = v.dataset.poster;
+    if (!v.dataset.src) return;          /* aún sin assets: se ve .placa */
     var con = navigator.connection || {};
     var lenta = con.saveData === true || /2g/.test(con.effectiveType || '');
     if (quieto || lenta || window.innerWidth < 720) return;
