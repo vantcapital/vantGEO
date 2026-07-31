@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Inserta las tipografias (woff2, subconjunto latino) como data URI dentro del HTML.
 
-Uso:  python3 tools/build.py src.html destino.html [--produccion]
-Con --produccion se omite la barra de ajustes flotante.
+Uso:  python3 tools/build.py src.html destino.html [--produccion] [--incrustar]
+  --produccion  omite la barra de ajustes flotante.
+  --incrustar   mete las imagenes como data URI (implicito sin --produccion).
 El HTML de origen debe contener el marcador  /*@FONTS@*/  dentro de su <style>.
 Opcionalmente, /*@CORE@*/ y /*@JS@*/ insertan src/core.css y src/core.js, y
 /*@FILE:ruta@*/ o <!--@FILE:ruta@--> insertan cualquier otro parcial.
@@ -64,6 +65,9 @@ def incrusta_imagenes(html):
 if __name__ == "__main__":
     origen, destino = sys.argv[1], sys.argv[2]
     produccion = "--produccion" in sys.argv
+    # Las imagenes se incrustan siempre en desarrollo, y en produccion solo
+    # si se pide: sirve para entregar la web entera en un unico archivo.
+    incrustar = "--incrustar" in sys.argv or not produccion
     html = open(origen).read()
     # La barra de ajustes solo viaja en las compilaciones de desarrollo.
     html = html.replace("<!--@AJUSTES@-->", "" if produccion else parcial("src/ajustes.html"))
@@ -74,7 +78,7 @@ if __name__ == "__main__":
     # Inclusiones genericas:  /*@FILE:ruta@*/  o  <!--@FILE:ruta@-->
     html = re.sub(r"(?:/\*|<!--)@FILE:([^@]+)@(?:\*/|-->)", lambda m: parcial(m.group(1).strip()), html)
     # Despues de las inclusiones: las rutas de imagen viven en los parciales.
-    if not produccion:
+    if incrustar:
         html = incrusta_imagenes(html)
     open(destino, "w").write(html)
     print(destino, os.path.getsize(destino) // 1024, "KB")
