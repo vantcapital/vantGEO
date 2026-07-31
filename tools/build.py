@@ -3,6 +3,8 @@
 
 Uso:  python3 tools/build.py src.html destino.html
 El HTML de origen debe contener el marcador  /*@FONTS@*/  dentro de su <style>.
+Opcionalmente, /*@CORE@*/ y /*@JS@*/ insertan src/core.css y src/core.js, y
+/*@FILE:ruta@*/ o <!--@FILE:ruta@--> insertan cualquier otro parcial.
 Las tipografias se cachean en tools/.fonts-cache.css para no depender de la red.
 """
 import re, sys, base64, os, urllib.request
@@ -33,10 +35,19 @@ def fuentes():
     open(CACHE, "w").write(texto)
     return texto
 
+RAIZ = os.path.dirname(AQUI)
+
+def parcial(ruta):
+    return open(os.path.join(RAIZ, ruta)).read()
+
 if __name__ == "__main__":
     origen, destino = sys.argv[1], sys.argv[2]
     html = open(origen).read()
     if "/*@FONTS@*/" not in html:
         sys.exit("falta el marcador /*@FONTS@*/ en " + origen)
-    open(destino, "w").write(html.replace("/*@FONTS@*/", fuentes()))
+    html = html.replace("/*@FONTS@*/", fuentes())
+    html = html.replace("/*@CORE@*/", parcial("src/core.css")).replace("/*@JS@*/", parcial("src/core.js"))
+    # Inclusiones genericas:  /*@FILE:ruta@*/  o  <!--@FILE:ruta@-->
+    html = re.sub(r"(?:/\*|<!--)@FILE:([^@]+)@(?:\*/|-->)", lambda m: parcial(m.group(1).strip()), html)
+    open(destino, "w").write(html)
     print(destino, os.path.getsize(destino) // 1024, "KB")

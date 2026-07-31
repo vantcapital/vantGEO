@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════════════════
+   HERO «Velo» — plano a sangre con velo petróleo.
+   Idéntico en las tres variantes: lo que cambia es el cuerpo.
+   ═══════════════════════════════════════════════════════════════ */
+.hero{--acento-txt:var(--laton-claro);position:relative;min-height:min(100svh,960px);background:var(--tinta);color:var(--crema);
+  overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+
+/* Capa de imagen/vídeo. Mientras no hay assets, la composición CSS de
+   .placa hace de marcador de posición con el mismo tratamiento duotono. */
+.hero .placa{position:absolute;inset:-6%;z-index:0;
+  animation:travelling calc(34s / var(--vel)) var(--ease) infinite alternate;
+  background:
+    radial-gradient(120% 90% at 74% 8%, rgba(250,248,243,.30) 0%, rgba(250,248,243,.07) 34%, transparent 62%),
+    radial-gradient(80% 70% at 12% 96%, rgba(14,58,58,.85) 0%, transparent 60%),
+    linear-gradient(168deg,#12292a 0%,#0d1f20 46%,#0a1515 100%)}
+.hero .placa::before{content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,transparent 0 61.5%,rgba(250,248,243,.11) 61.5% 61.7%,transparent 61.7%),
+    linear-gradient(90deg,transparent 0 79%,rgba(250,248,243,.07) 79% 79.15%,transparent 79.15%),
+    linear-gradient(0deg,transparent 0 26%,rgba(250,248,243,.06) 26% 26.12%,transparent 26.12%),
+    linear-gradient(0deg,transparent 0 71%,rgba(250,248,243,.09) 71% 71.15%,transparent 71.15%);
+  transform:perspective(900px) rotateY(-7deg) scale(1.14);filter:blur(.4px)}
+.hero .placa::after{content:'';position:absolute;left:56%;top:-10%;width:34%;height:78%;
+  background:linear-gradient(200deg,rgba(250,248,243,.16),transparent 68%);
+  filter:blur(26px);transform:skewX(-9deg)}
+@keyframes travelling{from{transform:scale(1.02)}to{transform:scale(1.11) translate3d(-1.6%,-1.1%,0)}}
+
+/* Póster y vídeo ocupan la misma capa: el vídeo aparece encima solo
+   cuando ya está reproduciéndose. */
+.hero .placa img,.hero .placa video{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.9)}
+.hero .placa video{opacity:0;transition:opacity calc(1.2s / var(--vel)) var(--ease)}
+.hero .placa video.visible{opacity:1}
+
+.hero .velo{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(11,22,22,.72) 0%,rgba(14,58,58,.80) 44%,rgba(11,22,22,.94) 100%)}
+.hero .vineta{position:absolute;inset:0;z-index:1;
+  background:radial-gradient(115% 85% at 50% 42%,transparent 40%,rgba(11,22,22,.75) 100%)}
+.hero .grano{z-index:2;mix-blend-mode:overlay;opacity:calc(var(--grano) * 1.5)}
+
+.hero .interior{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;
+  width:100%;max-width:1320px;margin:0 auto;padding:clamp(24px,4vw,52px) var(--margen) 0}
+.hero .top{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crema-50)}
+.hero .top .marca{color:var(--crema);letter-spacing:.36em;font-size:12px;text-decoration:none}
+.hero .centro{margin-top:auto;padding-bottom:clamp(34px,5vw,58px);max-width:1000px}
+.hero .kick{margin-bottom:clamp(20px,3vw,30px);color:var(--laton-claro)}
+.hero .kick::before{background:var(--laton)}
+.hero h1{font-variation-settings:'opsz' 120;font-size:clamp(2.3rem,5.9vw,5.1rem);
+  line-height:1.03;letter-spacing:-.022em;max-width:17ch}
+.hero h1 span{color:var(--laton-claro)}
+.hero .lede{margin-top:clamp(20px,2.6vw,30px);max-width:56ch;font-size:clamp(15px,1.15vw,17.5px);
+  line-height:1.68;color:var(--crema-70)}
+.hero .lede b{color:var(--crema);font-weight:500}
+.hero .acciones{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:clamp(28px,3.4vw,40px)}
+.hero .micro{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--crema-50);max-width:34ch}
+.hero .scroll{position:absolute;left:var(--margen);bottom:92px;z-index:3;display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,231,.4)}
+.hero .scroll i{display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--acento),transparent);
+  animation:bajada calc(2.6s / var(--vel)) var(--ease) infinite}
+@keyframes bajada{
+  0%{transform:scaleY(.25);transform-origin:top}
+  55%{transform:scaleY(1);transform-origin:top}
+  56%{transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:900px){.hero .scroll{display:none}}
