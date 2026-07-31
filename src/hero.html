@@ -1,5 +1,6 @@
-<header class="hero">
-  <div class="placa" aria-hidden="true">
+<header class="hero hero--panel">
+  <div class="foto" aria-hidden="true">
+   <div class="placa">
     <!-- La fotografía. El travelling lento no lo hace un vídeo: lo hace la
          animación de .placa, que arrastra despacio esta imagen fija.
          Sin `loading="lazy"` y con `fetchpriority="high"`: es la imagen
@@ -17,6 +18,7 @@
          red y se ve la composición CSS de .placa, con el mismo duotono. -->
     <video muted loop playsinline preload="none" aria-hidden="true"
            data-src="" data-poster=""></video>
+   </div>
   </div>
   <div class="velo" aria-hidden="true"></div>
   <div class="vineta" aria-hidden="true"></div>

@@ -229,9 +229,13 @@ p,figure,blockquote{margin:0}
   --hero-mezcla:overlay;
   --acento-txt:var(--laton-claro)}
 
+/* El marco recorta; la placa se mueve dentro. Sin él, el travelling se
+   saldría de la columna en la versión con panel. */
+.hero .foto{position:absolute;inset:0;z-index:0;overflow:hidden}
+
 /* Capa de imagen/vídeo. Mientras no hay assets, la composición CSS de
    .placa hace de marcador de posición con el mismo tratamiento. */
-.hero .placa{position:absolute;inset:-6%;z-index:0;
+.hero .placa{position:absolute;inset:-6%;
   animation:travelling calc(34s / var(--vel)) var(--ease) infinite alternate;
   background:
     radial-gradient(120% 90% at 74% 8%, rgba(250,248,243,.30) 0%, rgba(250,248,243,.07) 34%, transparent 62%),
@@ -331,6 +335,49 @@ p,figure,blockquote{margin:0}
   56%{transform-origin:bottom}
   100%{transform:scaleY(0);transform-origin:bottom}}
 @media(max-width:900px){.hero .scroll{display:none}}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   VERSIÓN CON PANEL — la fotografía deja de ir a sangre y ocupa una
+   columna propia a la derecha.
+
+   Es la respuesta al conflicto de fondo del hero claro: un velo de
+   papel y una fotografía legible se disputan el mismo rango tonal, y
+   subir el velo para que el texto se lea deslavaza la imagen. Aquí no
+   se superponen: el texto vive sobre papel limpio y la fotografía
+   conserva su duotono entero, con la tinta petróleo de la marca. No
+   hace falta ni velo ni halo, así que tampoco hay contraste que
+   negociar.
+   ═══════════════════════════════════════════════════════════════ */
+.hero--panel .foto{left:auto;right:0;width:44%}
+.hero--panel .velo,.hero--panel .vineta{display:none}
+/* La tinta petróleo sobre el gris: esto es el duotono, ya no un velo. */
+.hero--panel .foto::after{content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(196deg,rgba(14,58,58,.52) 0%,rgba(11,22,22,.74) 100%)}
+/* Un filete de papel al borde izquierdo del panel, para que el corte no
+   parezca un recorte accidental. */
+.hero--panel .foto::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
+  z-index:3;background:var(--linea)}
+.hero--panel .placa img,.hero--panel .placa video{filter:grayscale(1) contrast(1.06) brightness(.94)}
+.hero--panel .grano{z-index:4;mix-blend-mode:multiply}
+/* El contenido se aparta del panel con un cálculo, no con un porcentaje a
+   ojo: el panel mide 44vw, y el interior está centrado y limitado a 1320,
+   así que hay que descontar lo que sobra a cada lado. Sin esto, a ciertos
+   anchos la cabecera se metía debajo de la fotografía. */
+.hero--panel .interior{
+  padding-right:calc(var(--margen) + 44vw - max(0px,(100vw - 1320px) / 2) + 36px)}
+.hero--panel .scroll{color:var(--crema-50)}
+
+@media(max-width:900px){
+  /* En estrecho no hay sitio para dos columnas: vuelve a sangre con el
+     velo de papel, que ahí ya estaba comprobado. */
+  .hero--panel .foto{left:0;right:0;width:auto}
+  .hero--panel .foto::after,.hero--panel .foto::before{display:none}
+  .hero--panel .velo,.hero--panel .vineta{display:block}
+  .hero--panel .placa img,.hero--panel .placa video{filter:var(--hero-foto)}
+  .hero--panel .interior{padding-right:var(--margen)}
+  .hero--panel .grano{mix-blend-mode:var(--hero-mezcla)}
+}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -464,8 +511,9 @@ p,figure,blockquote{margin:0}
 <div class="progreso" aria-hidden="true"><i></i></div>
 <a id="inicio"></a>
 
-<header class="hero">
-  <div class="placa" aria-hidden="true">
+<header class="hero hero--panel">
+  <div class="foto" aria-hidden="true">
+   <div class="placa">
     <!-- La fotografía. El travelling lento no lo hace un vídeo: lo hace la
          animación de .placa, que arrastra despacio esta imagen fija.
          Sin `loading="lazy"` y con `fetchpriority="high"`: es la imagen
@@ -483,6 +531,7 @@ p,figure,blockquote{margin:0}
          red y se ve la composición CSS de .placa, con el mismo duotono. -->
     <video muted loop playsinline preload="none" aria-hidden="true"
            data-src="" data-poster=""></video>
+   </div>
   </div>
   <div class="velo" aria-hidden="true"></div>
   <div class="vineta" aria-hidden="true"></div>
