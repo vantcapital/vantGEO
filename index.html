@@ -197,14 +197,40 @@ p,figure,blockquote{margin:0}
   font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,231,.42)}
 
 /* ═══════════════════════════════════════════════════════════════
-   HERO «Velo» — plano a sangre con velo petróleo.
-   Idéntico en las tres variantes: lo que cambia es el cuerpo.
+   HERO — plano a sangre con velo.
+
+   Dos versiones, gobernadas por tokens: la clara es la de serie y la
+   oscura vive detrás de `.hero--oscuro`. Todo lo que cambia entre una
+   y otra son las variables de la cabecera; ninguna regla de maqueta
+   se duplica. La barra de ajustes conmuta esa clase en vivo.
    ═══════════════════════════════════════════════════════════════ */
-.hero{--acento-txt:var(--laton-claro);position:relative;min-height:min(100svh,960px);background:var(--tinta);color:var(--crema);
+.hero{
+  /* ── Versión clara (por defecto) ── */
+  --hero-fondo:var(--papel);
+  --hero-tinta:var(--texto);
+  --hero-suave:var(--texto-2);
+  --hero-tenue:var(--texto-2);  /* el mono de 10-11 px necesita AA de texto normal */
+  --hero-velo:.80;              /* opacidad del velo sobre la fotografía */
+  --hero-foto:grayscale(1) contrast(.92) brightness(1.24);
+  --hero-mezcla:multiply;
+  --acento-txt:#836336;         /* latón legible sobre papel */
+
+  position:relative;min-height:min(100svh,960px);
+  background:var(--hero-fondo);color:var(--hero-tinta);
   overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
 
+.hero--oscuro{
+  --hero-fondo:var(--tinta);
+  --hero-tinta:var(--crema);
+  --hero-suave:var(--crema-70);
+  --hero-tenue:var(--crema-50);
+  --hero-velo:.80;
+  --hero-foto:grayscale(1) contrast(1.05) brightness(.9);
+  --hero-mezcla:overlay;
+  --acento-txt:var(--laton-claro)}
+
 /* Capa de imagen/vídeo. Mientras no hay assets, la composición CSS de
-   .placa hace de marcador de posición con el mismo tratamiento duotono. */
+   .placa hace de marcador de posición con el mismo tratamiento. */
 .hero .placa{position:absolute;inset:-6%;z-index:0;
   animation:travelling calc(34s / var(--vel)) var(--ease) infinite alternate;
   background:
@@ -226,52 +252,77 @@ p,figure,blockquote{margin:0}
 /* Póster y vídeo ocupan la misma capa: el vídeo aparece encima solo
    cuando ya está reproduciéndose. */
 .hero .placa img,.hero .placa video{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.9)}
+  object-fit:cover;filter:var(--hero-foto)}
 .hero .placa video{opacity:0;transition:opacity calc(1.2s / var(--vel)) var(--ease)}
 .hero .placa video.visible{opacity:1}
 
+/* El velo. En claro es papel y deja la fotografía como una estampa
+   pálida; en oscuro es petróleo. La opacidad sale de --hero-velo, así
+   que el mismo control de la barra de ajustes sirve para las dos. */
 .hero .velo{position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(11,22,22,.72) 0%,rgba(14,58,58,.80) 44%,rgba(11,22,22,.94) 100%)}
-/* Viñeta general, más una penumbra que baja por el flanco izquierdo: es el
-   lado donde vive todo el texto, y la fotografía puede tener ahí una zona
-   clara. Sin ella, el latón del titular se quedaba en 3,06:1 sobre la parte
-   iluminada — justo en el límite. Es un degradado ancho y suave, así que no
-   se lee como una caja detrás del texto. */
+  background:linear-gradient(180deg,
+    rgba(250,248,243,calc(var(--hero-velo) * .96)) 0%,
+    rgba(244,239,231,var(--hero-velo)) 46%,
+    rgba(250,248,243,calc(var(--hero-velo) * 1.06)) 100%)}
+.hero--oscuro .velo{
+  background:linear-gradient(180deg,
+    rgba(11,22,22,calc(var(--hero-velo) * .9)) 0%,
+    rgba(14,58,58,var(--hero-velo)) 44%,
+    rgba(11,22,22,calc(var(--hero-velo) * 1.17)) 100%)}
+
+/* Viñeta general, más un halo que baja por el flanco izquierdo: es el
+   lado donde vive todo el texto, y la fotografía puede tener ahí una
+   zona que le reste contraste. Es un degradado ancho y suave, así que
+   no se lee como una caja detrás del texto. */
 .hero .vineta{position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(101deg,rgba(250,248,243,.90) 0%,rgba(250,248,243,.64) 34%,rgba(250,248,243,.2) 56%,transparent 72%),
+    radial-gradient(118% 88% at 52% 40%,transparent 44%,rgba(244,239,231,.72) 100%)}
+.hero--oscuro .vineta{
   background:
     linear-gradient(101deg,rgba(11,22,22,.62) 0%,rgba(11,22,22,.34) 32%,rgba(11,22,22,.06) 55%,transparent 68%),
     radial-gradient(115% 85% at 50% 42%,transparent 40%,rgba(11,22,22,.75) 100%)}
-/* En pantalla estrecha la fotografía ya se ve muy recortada, y con la
-   penumbra a plena potencia desaparecía del todo. Se rebaja: el contraste
-   sigue por encima de AA porque ahí el texto ocupa todo el ancho y no cae
-   sobre la zona más clara. */
+/* En pantalla estrecha la fotografía se ve muy recortada, y con el halo
+   a plena potencia desaparecía del todo. Se rebaja: el contraste sigue
+   por encima de AA porque ahí el texto ocupa todo el ancho y no cae
+   sobre la zona que más le resta. */
 @media(max-width:900px){
   .hero .vineta{background:
+    linear-gradient(101deg,rgba(250,248,243,.5) 0%,rgba(250,248,243,.28) 40%,transparent 74%),
+    radial-gradient(120% 80% at 50% 38%,transparent 48%,rgba(244,239,231,.68) 100%)}
+  .hero--oscuro .vineta{background:
     linear-gradient(101deg,rgba(11,22,22,.34) 0%,rgba(11,22,22,.18) 38%,transparent 72%),
     radial-gradient(120% 80% at 50% 38%,transparent 46%,rgba(11,22,22,.72) 100%)}
 }
-.hero .grano{z-index:2;mix-blend-mode:overlay;opacity:calc(var(--grano) * 1.5)}
+.hero .grano{z-index:2;mix-blend-mode:var(--hero-mezcla);opacity:calc(var(--grano) * 1.5)}
 
 .hero .interior{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;
   width:100%;max-width:1320px;margin:0 auto;padding:clamp(24px,4vw,52px) var(--margen) 0}
 .hero .top{display:flex;justify-content:space-between;align-items:center;gap:18px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crema-50)}
-.hero .top .marca{color:var(--crema);letter-spacing:.36em;font-size:12px;text-decoration:none}
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--hero-suave)}
+.hero .top .marca{color:var(--hero-tinta);letter-spacing:.36em;font-size:12px;text-decoration:none}
 .hero .centro{margin-top:auto;padding-bottom:clamp(34px,5vw,58px);max-width:1000px}
-.hero .kick{margin-bottom:clamp(20px,3vw,30px);color:var(--laton-claro)}
-.hero .kick::before{background:var(--laton)}
+.hero .kick{margin-bottom:clamp(20px,3vw,30px)}
+.hero .kick::before{background:var(--acento-txt)}
 .hero h1{font-variation-settings:'opsz' 120;font-size:clamp(2.3rem,5.9vw,5.1rem);
-  line-height:1.03;letter-spacing:-.022em;max-width:17ch}
-.hero h1 span{color:var(--laton-claro)}
+  line-height:1.03;letter-spacing:-.022em;max-width:17ch;color:var(--hero-tinta)}
+.hero h1 span{color:var(--acento-txt)}
 .hero .lede{margin-top:clamp(20px,2.6vw,30px);max-width:56ch;font-size:clamp(15px,1.15vw,17.5px);
-  line-height:1.68;color:var(--crema-70)}
-.hero .lede b{color:var(--crema);font-weight:500}
+  line-height:1.68;color:var(--hero-suave)}
+.hero .lede b{color:var(--hero-tinta);font-weight:500}
 .hero .acciones{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:clamp(28px,3.4vw,40px)}
-.hero .micro{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--crema-50);max-width:34ch}
+.hero .micro{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--hero-tenue);max-width:34ch}
+
+/* Sobre papel el botón va macizo en petróleo; sobre fondo oscuro pasa a
+   filete de latón, que ahí sí destaca sin necesidad de relleno. */
+.hero--oscuro .cta{background:transparent;color:var(--crema);border-color:var(--acento-txt)}
+.hero--oscuro .cta:hover,.hero--oscuro .cta:focus-visible{
+  background:var(--laton-claro);color:var(--tinta);border-color:var(--laton-claro)}
+
 /* A la derecha y abajo del todo: el CTA manda en la esquina izquierda
    y este indicador no debe disputarle el sitio. */
 .hero .scroll{position:absolute;right:var(--margen);bottom:30px;z-index:3;display:flex;align-items:center;gap:12px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,231,.4)}
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--hero-tenue)}
 .hero .scroll i{display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--acento),transparent);
   animation:bajada calc(2.6s / var(--vel)) var(--ease) infinite}
 @keyframes bajada{
@@ -447,7 +498,7 @@ p,figure,blockquote{margin:0}
       <h1 class="rise">Hay una conversación sobre su clínica. Usted no está <span>en la sala.</span></h1>
       <p class="lede rise">Cuando un paciente le pregunta a una inteligencia artificial a qué clínica ir, esa respuesta nombra a unas y calla a otras. <b>Medimos si le nombra a usted</b> — cada mes, con las preguntas exactas para que lo verifique por su cuenta. Nadie puede garantizarle un puesto en esas respuestas. Nosotros tampoco lo hacemos.</p>
       <div class="acciones rise">
-        <a class="cta cta--linea" href="#auditoria">Reservar auditoría gratuita<i aria-hidden="true"></i></a>
+        <a class="cta" href="#auditoria">Reservar auditoría gratuita<i aria-hidden="true"></i></a>
         <p class="micro">15 minutos · Sin permanencia · Le decimos también si no le hacemos falta</p>
       </div>
     </div>

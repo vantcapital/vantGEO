@@ -55,6 +55,14 @@
     </div>
 
     <div class="aj-campo">
+      <label for="aj-hero">Fondo del hero</label>
+      <select id="aj-hero">
+        <option value="claro">Claro — papel cálido</option>
+        <option value="oscuro">Oscuro — velo petróleo</option>
+      </select>
+    </div>
+
+    <div class="aj-campo">
       <label for="aj-serif">Tipografía de titulares</label>
       <select id="aj-serif" data-var="--serif">
         <option value="'Fraunces',Georgia,serif">Fraunces — la de marca</option>
@@ -186,7 +194,7 @@
 
   /* ── Estado ──────────────────────────────────────────────── */
   var por_defecto = {
-    serif: "'Fraunces',Georgia,serif", peso: 300, opsz: 72, base: 16,
+    hero: 'claro', serif: "'Fraunces',Georgia,serif", peso: 300, opsz: 72, base: 16,
     acento: '#B08D57', grano: 4.5, vel: 1, seccion: 88, margen: 72, velo: 80
   };
   var estado = Object.assign({}, por_defecto);
@@ -216,11 +224,12 @@
       h.style.fontStyle = cursiva ? 'italic' : '';
       h.style.fontVariationSettings = "'opsz' " + e.opsz;
     });
-    var velo = document.querySelector('.hero .velo');
-    if (velo) {
-      var a = e.velo / 100;
-      velo.style.background = 'linear-gradient(180deg,rgba(11,22,22,' + (a * 0.9).toFixed(2) +
-        ') 0%,rgba(14,58,58,' + a.toFixed(2) + ') 44%,rgba(11,22,22,' + Math.min(1, a * 1.17).toFixed(2) + ') 100%)';
+    var hero = document.querySelector('.hero');
+    if (hero) {
+      hero.classList.toggle('hero--oscuro', e.hero === 'oscuro');
+      /* El velo se gobierna por variable, no reescribiendo el degradado:
+         la misma opacidad sirve para el papel y para el petróleo. */
+      hero.style.setProperty('--hero-velo', (e.velo / 100).toFixed(2));
     }
     /* Etiquetas */
     document.getElementById('v-peso').textContent = e.peso;
@@ -246,6 +255,7 @@
       aplica();
     });
   }
+  liga('aj-hero', 'hero');
   liga('aj-serif', 'serif');
   liga('aj-peso', 'peso', Number);
   liga('aj-opsz', 'opsz', Number);
@@ -280,6 +290,7 @@
         document.getElementById(id).value = estado[id.replace('aj-', '')];
       });
     document.getElementById('aj-serif').value = estado.serif;
+    document.getElementById('aj-hero').value = estado.hero;
     pintaMuestras(); aplica();
   });
 
